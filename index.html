@@ -3,179 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LUXE STORE | Premium Shopping</title>
+    <title>INSIGHT | แหล่งรวมข้อมูลและความรู้สมัยใหม่</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;400;600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Kanit', sans-serif; scroll-behavior: smooth; }
-        .font-montserrat { font-family: 'Montserrat', sans-serif; }
-        .glass { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); }
-        .product-card:hover .product-img { transform: scale(1.08); }
-        .btn-gradient { background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); }
+        body { font-family: 'Kanit', sans-serif; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .hover-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .hover-lift:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); }
     </style>
 </head>
-<body class="bg-[#fcfcfd] text-slate-900">
+<body class="bg-[#fafafa] text-slate-800">
 
-    <nav class="glass sticky top-0 z-[100] border-b border-gray-100">
+    <div class="fixed top-0 left-0 w-full h-1 bg-indigo-600 z-[110]"></div>
+
+    <nav class="bg-white/80 backdrop-blur-md sticky top-0 z-[100] border-b border-gray-100">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-montserrat font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">
-                LUXE.
-            </a>
+            <a href="#" class="text-2xl font-serif font-bold tracking-tight text-indigo-900">INSIGHT.</a>
             
-            <div class="hidden lg:flex space-x-10 text-sm font-medium uppercase tracking-widest">
-                <a href="#" class="hover:text-indigo-600 transition">New Arrivals</a>
-                <a href="#" class="hover:text-indigo-600 transition">Collections</a>
-                <a href="#" class="hover:text-indigo-600 transition">Sale</a>
+            <div class="hidden md:flex space-x-8 text-sm font-medium">
+                <a href="#" class="text-indigo-600 border-b-2 border-indigo-600 pb-1">หน้าหลัก</a>
+                <a href="#articles" class="hover:text-indigo-600 transition pb-1">บทความทั้งหมด</a>
+                <a href="#" class="hover:text-indigo-600 transition pb-1">รายงานประจำปี</a>
+                <a href="#" class="hover:text-indigo-600 transition pb-1">เกี่ยวกับเรา</a>
             </div>
 
-            <div class="flex items-center space-x-6">
-                <button class="hover:text-indigo-600 transition"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button>
-                <div class="relative group cursor-pointer">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
-                    <span class="absolute -top-2 -right-2 bg-indigo-600 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">2</span>
-                </div>
-            </div>
+            <button class="bg-slate-900 text-white px-5 py-2 rounded-full text-sm hover:bg-indigo-600 transition">สมัครสมาชิก</button>
         </div>
     </nav>
 
-    <section class="relative h-[80vh] flex items-center overflow-hidden bg-slate-900">
-        <div class="absolute inset-0 opacity-40">
-            <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=1920" class="w-full h-full object-cover">
-        </div>
-        <div class="container mx-auto px-6 relative z-10">
-            <div class="max-w-2xl text-white">
-                <span class="uppercase tracking-[0.3em] text-sm mb-4 block text-indigo-400 font-semibold">Limited Edition</span>
-                <h1 class="text-6xl md:text-8xl font-montserrat font-bold leading-tight mb-8">Elevate Your <br>Lifestyle.</h1>
-                <p class="text-lg text-gray-300 mb-10 font-light max-w-md">สัมผัสประสบการณ์การช้อปปิ้งระดับพรีเมียม กับสินค้าที่คัดสรรมาเพื่อรสนิยมที่โดดเด่นของคุณโดยเฉพาะ</p>
-                <div class="flex space-x-4">
-                    <a href="#shop" class="btn-gradient px-10 py-4 rounded-full font-semibold shadow-xl shadow-indigo-500/20 hover:scale-105 transition-transform">Explore Collection</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="bg-white py-10 border-b">
-        <div class="container mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div class="flex items-center space-x-4 border-r border-gray-100 last:border-0">
-                <div class="bg-indigo-50 p-3 rounded-full text-indigo-600">📦</div>
-                <div><h4 class="font-bold text-sm">Free Shipping</h4><p class="text-xs text-gray-400">เมื่อสั่งซื้อเกิน ฿2,000</p></div>
-            </div>
-            <div class="flex items-center space-x-4 border-r border-gray-100 last:border-0">
-                <div class="bg-indigo-50 p-3 rounded-full text-indigo-600">🛡️</div>
-                <div><h4 class="font-bold text-sm">Secure Payment</h4><p class="text-xs text-gray-400">ปลอดภัย 100%</p></div>
-            </div>
-            </div>
-    </section>
-
-    <section id="shop" class="py-24">
+    <header class="py-12 md:py-20">
         <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-16">
-                <div>
-                    <h2 class="text-4xl font-montserrat font-bold mb-4">Trending Now</h2>
-                    <p class="text-gray-400">สินค้าที่กำลังเป็นที่นิยมและขายดีที่สุดในสัปดาห์นี้</p>
+            <div class="flex flex-col lg:flex-row gap-12 items-center">
+                <div class="lg:w-1/2 order-2 lg:order-1">
+                    <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded text-xs font-bold uppercase mb-4 inline-block">Editor's Choice</span>
+                    <h1 class="text-4xl md:text-6xl font-serif leading-tight mb-6">อนาคตของปัญญาประดิษฐ์ กับการเปลี่ยนแปลงวิถีชีวิตในปี 2025</h1>
+                    <p class="text-lg text-gray-500 mb-8 font-light leading-relaxed">เจาะลึกเทคโนโลยี AI ที่กำลังจะเข้ามามีบทบาทสำคัญในทุกอุตสาหกรรม ตั้งแต่การแพทย์ไปจนถึงการศึกษา พร้อมบทวิเคราะห์จากผู้เชี่ยวชาญระดับโลก</p>
+                    <div class="flex items-center space-x-4">
+                        <img src="https://i.pravatar.cc/100?img=32" class="w-12 h-12 rounded-full border-2 border-white shadow-sm">
+                        <div>
+                            <p class="font-bold text-sm">ดร. สมชาย มุ่งมั่น</p>
+                            <p class="text-xs text-gray-400">12 มกราคม 2025 • อ่าน 8 นาที</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="mt-6 md:mt-0 flex space-x-2">
-                    <button class="px-6 py-2 rounded-full border border-gray-200 hover:border-indigo-600 hover:text-indigo-600 transition text-sm">All</button>
-                    <button class="px-6 py-2 rounded-full bg-gray-900 text-white text-sm">Fashion</button>
-                    <button class="px-6 py-2 rounded-full border border-gray-200 hover:border-indigo-600 hover:text-indigo-600 transition text-sm">Tech</button>
+                <div class="lg:w-1/2 order-1 lg:order-2">
+                    <div class="rounded-3xl overflow-hidden shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=1200" alt="Hero" class="w-full h-[400px] object-cover hover:scale-105 transition duration-700">
+                    </div>
                 </div>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-                <div class="product-card group cursor-pointer">
-                    <div class="relative h-[400px] overflow-hidden rounded-3xl bg-gray-100">
-                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&q=80&w=800" class="product-img w-full h-full object-cover transition duration-700">
-                        <div class="absolute inset-0 bg-black/5 group-hover:bg-black/20 transition-colors"></div>
-                        <button class="absolute bottom-6 left-1/2 -translate-x-1/2 translate-y-12 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 btn-gradient text-white px-8 py-3 rounded-xl transition-all duration-300 flex items-center whitespace-nowrap">
-                            Add to Cart
-                        </button>
-                    </div>
-                    <div class="mt-6">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-lg font-semibold tracking-tight">Modern White Watch</h3>
-                            <span class="font-montserrat font-bold text-indigo-600">฿3,500</span>
-                        </div>
-                        <p class="text-gray-400 text-sm">Limited Premium Edition</p>
-                    </div>
-                </div>
-
-                <div class="product-card group cursor-pointer">
-                    <div class="relative h-[400px] overflow-hidden rounded-3xl bg-gray-100">
-                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&q=80&w=800" class="product-img w-full h-full object-cover transition duration-700">
-                        <div class="absolute top-4 right-4 bg-rose-500 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-tighter">Sale</div>
-                        <button class="absolute bottom-6 left-1/2 -translate-x-1/2 translate-y-12 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 btn-gradient text-white px-8 py-3 rounded-xl transition-all duration-300 flex items-center whitespace-nowrap">
-                            Add to Cart
-                        </button>
-                    </div>
-                    <div class="mt-6">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-lg font-semibold tracking-tight">Wireless Headphones</h3>
-                            <div class="text-right">
-                                <span class="font-montserrat font-bold text-indigo-600 block">฿1,290</span>
-                                <span class="text-xs text-gray-300 line-through">฿2,500</span>
-                            </div>
-                        </div>
-                        <p class="text-gray-400 text-sm">Noise Cancelling Studio</p>
-                    </div>
-                </div>
-                
-                </div>
         </div>
-    </section>
+    </header>
 
-    <section class="py-20 bg-indigo-50/50">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="text-2xl font-montserrat font-bold mb-10">#LUXELIFE ON INSTAGRAM</h2>
-            <div class="grid grid-cols-2 md:grid-cols-6 gap-2">
-                <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&q=60&w=300" class="aspect-square object-cover grayscale hover:grayscale-0 transition duration-500 cursor-pointer">
-                <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&q=60&w=300" class="aspect-square object-cover grayscale hover:grayscale-0 transition duration-500 cursor-pointer">
-                <img src="https://images.unsplash.com/photo-1511499767350-a1590fdb7318?auto=format&fit=crop&q=60&w=300" class="aspect-square object-cover grayscale hover:grayscale-0 transition duration-500 cursor-pointer">
-                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&q=60&w=300" class="aspect-square object-cover grayscale hover:grayscale-0 transition duration-500 cursor-pointer">
-                <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&q=60&w=300" class="aspect-square object-cover grayscale hover:grayscale-0 transition duration-500 cursor-pointer">
-                <img src="https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&q=60&w=300" class="aspect-square object-cover grayscale hover:grayscale-0 transition duration-500 cursor-pointer">
+    <section class="py-10 border-y border-gray-100 bg-white">
+        <div class="container mx-auto px-6 overflow-x-auto">
+            <div class="flex space-x-12 justify-center min-w-max text-sm font-light text-gray-400">
+                <a href="#" class="hover:text-indigo-600 transition">#เทคโนโลยี</a>
+                <a href="#" class="hover:text-indigo-600 transition">#สุขภาพ</a>
+                <a href="#" class="hover:text-indigo-600 transition">#การเงิน</a>
+                <a href="#" class="hover:text-indigo-600 transition">#สิ่งแวดล้อม</a>
+                <a href="#" class="hover:text-indigo-600 transition">#ไลฟ์สไตล์</a>
+                <a href="#" class="hover:text-indigo-600 transition">#การศึกษา</a>
             </div>
         </div>
     </section>
 
-    <footer class="bg-slate-900 text-white pt-20 pb-10">
-        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-20 border-b border-slate-800 pb-20">
-            <div class="col-span-1">
-                <h3 class="text-2xl font-montserrat font-bold mb-8">LUXE.</h3>
-                <p class="text-slate-400 font-light leading-relaxed">เรานิยามความหรูหราใหม่ผ่านสินค้าที่มีคุณภาพและงานดีไซน์ที่อยู่เหนือกาลเวลา</p>
-            </div>
-            <div class="col-span-1 grid grid-cols-2 gap-8">
-                <div>
-                    <h4 class="font-bold mb-6 text-sm uppercase tracking-widest">Shop</h4>
-                    <ul class="space-y-4 text-slate-400 text-sm">
-                        <li><a href="#" class="hover:text-white">Men</a></li>
-                        <li><a href="#" class="hover:text-white">Women</a></li>
-                        <li><a href="#" class="hover:text-white">Accessory</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold mb-6 text-sm uppercase tracking-widest">Help</h4>
-                    <ul class="space-y-4 text-slate-400 text-sm">
-                        <li><a href="#" class="hover:text-white">Shipping</a></li>
-                        <li><a href="#" class="hover:text-white">FAQ</a></li>
-                        <li><a href="#" class="hover:text-white">Contact</a></li>
-                    </ul>
+    <main id="articles" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-end mb-12">
+                <h2 class="text-3xl font-serif font-bold">บทความล่าสุด</h2>
+                <div class="flex space-x-2">
+                    <button class="w-10 h-10 rounded-full border flex items-center justify-center hover:bg-indigo-600 hover:text-white transition">←</button>
+                    <button class="w-10 h-10 rounded-full border flex items-center justify-center hover:bg-indigo-600 hover:text-white transition">→</button>
                 </div>
             </div>
-            <div class="col-span-1">
-                <h4 class="font-bold mb-6 text-sm uppercase tracking-widest">Newsletter</h4>
-                <div class="flex border-b border-slate-700 pb-2">
-                    <input type="text" placeholder="Your Email Address" class="bg-transparent border-none w-full focus:ring-0 text-sm">
-                    <button class="text-sm font-bold uppercase tracking-tighter">Join</button>
-                </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <article class="bg-white rounded-2xl overflow-hidden hover-lift border border-gray-50">
+                    <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&q=80&w=800" class="w-full h-56 object-cover">
+                    <div class="p-8">
+                        <div class="flex items-center text-[10px] font-bold text-indigo-600 uppercase tracking-widest mb-3">
+                            <span>สุขภาพ</span>
+                            <span class="mx-2">•</span>
+                            <span class="text-gray-400">5 นาทีที่แล้ว</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 leading-snug hover:text-indigo-600 transition cursor-pointer">การฝึกสมาธิในยุคดิจิทัล: วิธีรับมือกับความเครียดจากการทำงาน</h3>
+                        <p class="text-gray-500 text-sm font-light line-clamp-2 mb-6">สำรวจเทคนิคการจัดการความเครียดที่ได้ผลจริงในยุคที่ทุกอย่างรวดเร็วและเต็มไปด้วยข้อมูล...</p>
+                        <a href="#" class="text-sm font-bold border-b-2 border-indigo-100 hover:border-indigo-600 transition pb-1">อ่านเพิ่มเติม</a>
+                    </div>
+                </article>
+
+                <article class="bg-white rounded-2xl overflow-hidden hover-lift border border-gray-50">
+                    <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&q=80&w=800" class="w-full h-56 object-cover">
+                    <div class="p-8">
+                        <div class="flex items-center text-[10px] font-bold text-indigo-600 uppercase tracking-widest mb-3">
+                            <span>การเงิน</span>
+                            <span class="mx-2">•</span>
+                            <span class="text-gray-400">2 ชั่วโมงที่แล้ว</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 leading-snug hover:text-indigo-600 transition cursor-pointer">แนวโน้มตลาดคริปโตเคอเรนซี่ และทิศทางเศรษฐกิจโลก</h3>
+                        <p class="text-gray-500 text-sm font-light line-clamp-2 mb-6">วิเคราะห์ปัจจัยสำคัญที่ส่งผลต่อค่าเงินดิจิทัลในช่วงไตรมาสแรกของปี และกลยุทธ์การลงทุนที่ควรระวัง...</p>
+                        <a href="#" class="text-sm font-bold border-b-2 border-indigo-100 hover:border-indigo-600 transition pb-1">อ่านเพิ่มเติม</a>
+                    </div>
+                </article>
+
+                <article class="bg-white rounded-2xl overflow-hidden hover-lift border border-gray-50">
+                    <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=800" class="w-full h-56 object-cover">
+                    <div class="p-8">
+                        <div class="flex items-center text-[10px] font-bold text-indigo-600 uppercase tracking-widest mb-3">
+                            <span>ธุรกิจ</span>
+                            <span class="mx-2">•</span>
+                            <span class="text-gray-400">วานนี้</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 leading-snug hover:text-indigo-600 transition cursor-pointer">Work From Anywhere: อนาคตของออฟฟิศสมัยใหม่</h3>
+                        <p class="text-gray-500 text-sm font-light line-clamp-2 mb-6">ทำไมบริษัทชั้นนำทั่วโลกถึงเริ่มเปลี่ยนนโยบายการเข้าออฟฟิศ และมันส่งผลดีต่อ Productivity จริงหรือ?</p>
+                        <a href="#" class="text-sm font-bold border-b-2 border-indigo-100 hover:border-indigo-600 transition pb-1">อ่านเพิ่มเติม</a>
+                    </div>
+                </article>
             </div>
         </div>
-        <div class="container mx-auto px-6 pt-10 flex justify-between items-center text-xs text-slate-500">
-            <p>&copy; 2025 LUXE STORE THAILAND. ALL RIGHTS RESERVED.</p>
-            <div class="flex space-x-6">
-                <span>FB</span>
-                <span>IG</span>
-                <span>TW</span>
+    </main>
+
+    <section class="py-20 bg-indigo-900 text-white overflow-hidden relative">
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <h2 class="text-3xl md:text-4xl font-serif font-bold mb-6">ไม่พลาดทุกข้อมูลสำคัญ</h2>
+            <p class="text-indigo-200 mb-10 max-w-lg mx-auto font-light">สมัครรับข่าวสารรายสัปดาห์ ส่งตรงบทความคุณภาพและบทวิเคราะห์ที่คุณควรรู้ถึงอีเมลของคุณ</p>
+            <div class="flex flex-col md:flex-row justify-center gap-4 max-w-md mx-auto">
+                <input type="email" placeholder="อีเมลของคุณ" class="px-6 py-4 rounded-full bg-white/10 border border-white/20 text-white focus:outline-none focus:bg-white/20 w-full transition">
+                <button class="bg-white text-indigo-900 px-8 py-4 rounded-full font-bold hover:bg-indigo-100 transition whitespace-nowrap">ติดตาม</button>
             </div>
+        </div>
+        <div class="absolute top-0 right-0 w-64 h-64 bg-indigo-500 rounded-full blur-[120px] opacity-20 -mr-32 -mt-32"></div>
+    </section>
+
+    <footer class="bg-white py-12 border-t">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="text-xl font-serif font-bold text-indigo-900">INSIGHT.</div>
+            <div class="flex space-x-8 text-sm text-gray-400 font-light">
+                <a href="#" class="hover:text-indigo-600 transition">นโยบายความเป็นส่วนตัว</a>
+                <a href="#" class="hover:text-indigo-600 transition">ข้อกำหนดการใช้งาน</a>
+                <a href="#" class="hover:text-indigo-600 transition">ติดต่อโฆษณา</a>
+            </div>
+            <p class="text-xs text-gray-300">© 2025 INSIGHT KNOWLEDGE HUB. ALL RIGHTS RESERVED.</p>
         </div>
     </footer>
 
