@@ -3,152 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INSIGHT | แหล่งรวมข้อมูลและความรู้สมัยใหม่</title>
+    <title>INSIGHT. | ระบบข้อมูลพรีเมียม</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Kanit', sans-serif; }
+        body { font-family: 'Kanit', sans-serif; transition: all 0.3s ease; }
         .font-serif { font-family: 'Playfair Display', serif; }
-        .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-        .hover-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
-        .hover-lift:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); }
+        .hidden-section { display: none !important; }
+        .glass { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); }
     </style>
 </head>
 <body class="bg-[#fafafa] text-slate-800">
 
-    <div class="fixed top-0 left-0 w-full h-1 bg-indigo-600 z-[110]"></div>
-
-    <nav class="bg-white/80 backdrop-blur-md sticky top-0 z-[100] border-b border-gray-100">
+    <nav class="glass sticky top-0 z-[100] border-b border-gray-100">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="#" class="text-2xl font-serif font-bold tracking-tight text-indigo-900">INSIGHT.</a>
             
             <div class="hidden md:flex space-x-8 text-sm font-medium">
-                <a href="#" class="text-indigo-600 border-b-2 border-indigo-600 pb-1">หน้าหลัก</a>
-                <a href="#articles" class="hover:text-indigo-600 transition pb-1">บทความทั้งหมด</a>
-                <a href="#" class="hover:text-indigo-600 transition pb-1">รายงานประจำปี</a>
-                <a href="#" class="hover:text-indigo-600 transition pb-1">เกี่ยวกับเรา</a>
+                <a href="#" class="hover:text-indigo-600">หน้าหลัก</a>
+                <a href="#" class="hover:text-indigo-600">บทความ</a>
+                <a href="#" class="hover:text-indigo-600">พรีเมียม</a>
             </div>
-            <a href="register.html" class="bg-slate-900 text-white px-5 py-2 rounded-full text-sm hover:bg-indigo-600 transition inline-block">สมัครสมาชิก</a>
 
+            <div id="nav-auth-section">
+                <button onclick="showAuthModal()" id="btn-login-ui" class="bg-slate-900 text-white px-6 py-2 rounded-full text-sm hover:bg-indigo-600 transition">เข้าสู่ระบบ</button>
+                
+                <div id="user-info-ui" class="hidden-section flex items-center space-x-4">
+                    <span id="display-email" class="text-sm font-medium text-gray-600"></span>
+                    <button onclick="handleLogout()" class="text-sm text-rose-500 font-bold hover:underline">ออกจากระบบ</button>
+                </div>
+            </div>
         </div>
     </nav>
 
-    <header class="py-12 md:py-20">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col lg:flex-row gap-12 items-center">
-                <div class="lg:w-1/2 order-2 lg:order-1">
-                    <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded text-xs font-bold uppercase mb-4 inline-block">Editor's Choice</span>
-                    <h1 class="text-4xl md:text-6xl font-serif leading-tight mb-6">อนาคตของปัญญาประดิษฐ์ กับการเปลี่ยนแปลงวิถีชีวิตในปี 2025</h1>
-                    <p class="text-lg text-gray-500 mb-8 font-light leading-relaxed">เจาะลึกเทคโนโลยี AI ที่กำลังจะเข้ามามีบทบาทสำคัญในทุกอุตสาหกรรม ตั้งแต่การแพทย์ไปจนถึงการศึกษา พร้อมบทวิเคราะห์จากผู้เชี่ยวชาญระดับโลก</p>
-                    <div class="flex items-center space-x-4">
-                        <img src="https://i.pravatar.cc/100?img=32" class="w-12 h-12 rounded-full border-2 border-white shadow-sm">
-                        <div>
-                            <p class="font-bold text-sm">ดร. สมชาย มุ่งมั่น</p>
-                            <p class="text-xs text-gray-400">12 มกราคม 2025 • อ่าน 8 นาที</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="lg:w-1/2 order-1 lg:order-2">
-                    <div class="rounded-3xl overflow-hidden shadow-2xl">
-                        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=1200" alt="Hero" class="w-full h-[400px] object-cover hover:scale-105 transition duration-700">
-                    </div>
+    <main id="main-content">
+        <header class="py-12 md:py-20 bg-white">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-5xl md:text-7xl font-serif mb-6 leading-tight">ความรู้ที่ <span class="text-indigo-600">คัดสรร</span> <br>มาเพื่อคุณโดยเฉพาะ</h1>
+                <p class="text-gray-500 max-w-2xl mx-auto mb-10 font-light text-lg">เข้าถึงบทวิเคราะห์เจาะลึกและเทรนด์เทคโนโลยีล่าสุดก่อนใคร เพียงสมัครสมาชิกกับเราวันนี้</p>
+                <div id="hero-cta">
+                    <button onclick="showAuthModal()" class="bg-indigo-600 text-white px-10 py-4 rounded-full font-bold shadow-lg shadow-indigo-200 hover:scale-105 transition">เริ่มต้นใช้งานฟรี</button>
                 </div>
             </div>
-        </div>
-    </header>
-
-    <section class="py-10 border-y border-gray-100 bg-white">
-        <div class="container mx-auto px-6 overflow-x-auto">
-            <div class="flex space-x-12 justify-center min-w-max text-sm font-light text-gray-400">
-                <a href="#" class="hover:text-indigo-600 transition">#เทคโนโลยี</a>
-                <a href="#" class="hover:text-indigo-600 transition">#สุขภาพ</a>
-                <a href="#" class="hover:text-indigo-600 transition">#การเงิน</a>
-                <a href="#" class="hover:text-indigo-600 transition">#สิ่งแวดล้อม</a>
-                <a href="#" class="hover:text-indigo-600 transition">#ไลฟ์สไตล์</a>
-                <a href="#" class="hover:text-indigo-600 transition">#การศึกษา</a>
-            </div>
-        </div>
-    </section>
-
-    <main id="articles" class="py-20">
-        <div class="container mx-auto px-6">
-            <div class="flex justify-between items-end mb-12">
-                <h2 class="text-3xl font-serif font-bold">บทความล่าสุด</h2>
-                <div class="flex space-x-2">
-                    <button class="w-10 h-10 rounded-full border flex items-center justify-center hover:bg-indigo-600 hover:text-white transition">←</button>
-                    <button class="w-10 h-10 rounded-full border flex items-center justify-center hover:bg-indigo-600 hover:text-white transition">→</button>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                <article class="bg-white rounded-2xl overflow-hidden hover-lift border border-gray-50">
-                    <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&q=80&w=800" class="w-full h-56 object-cover">
-                    <div class="p-8">
-                        <div class="flex items-center text-[10px] font-bold text-indigo-600 uppercase tracking-widest mb-3">
-                            <span>สุขภาพ</span>
-                            <span class="mx-2">•</span>
-                            <span class="text-gray-400">5 นาทีที่แล้ว</span>
-                        </div>
-                        <h3 class="text-xl font-bold mb-4 leading-snug hover:text-indigo-600 transition cursor-pointer">การฝึกสมาธิในยุคดิจิทัล: วิธีรับมือกับความเครียดจากการทำงาน</h3>
-                        <p class="text-gray-500 text-sm font-light line-clamp-2 mb-6">สำรวจเทคนิคการจัดการความเครียดที่ได้ผลจริงในยุคที่ทุกอย่างรวดเร็วและเต็มไปด้วยข้อมูล...</p>
-                        <a href="#" class="text-sm font-bold border-b-2 border-indigo-100 hover:border-indigo-600 transition pb-1">อ่านเพิ่มเติม</a>
-                    </div>
-                </article>
-
-                <article class="bg-white rounded-2xl overflow-hidden hover-lift border border-gray-50">
-                    <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&q=80&w=800" class="w-full h-56 object-cover">
-                    <div class="p-8">
-                        <div class="flex items-center text-[10px] font-bold text-indigo-600 uppercase tracking-widest mb-3">
-                            <span>การเงิน</span>
-                            <span class="mx-2">•</span>
-                            <span class="text-gray-400">2 ชั่วโมงที่แล้ว</span>
-                        </div>
-                        <h3 class="text-xl font-bold mb-4 leading-snug hover:text-indigo-600 transition cursor-pointer">แนวโน้มตลาดคริปโตเคอเรนซี่ และทิศทางเศรษฐกิจโลก</h3>
-                        <p class="text-gray-500 text-sm font-light line-clamp-2 mb-6">วิเคราะห์ปัจจัยสำคัญที่ส่งผลต่อค่าเงินดิจิทัลในช่วงไตรมาสแรกของปี และกลยุทธ์การลงทุนที่ควรระวัง...</p>
-                        <a href="#" class="text-sm font-bold border-b-2 border-indigo-100 hover:border-indigo-600 transition pb-1">อ่านเพิ่มเติม</a>
-                    </div>
-                </article>
-
-                <article class="bg-white rounded-2xl overflow-hidden hover-lift border border-gray-50">
-                    <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=800" class="w-full h-56 object-cover">
-                    <div class="p-8">
-                        <div class="flex items-center text-[10px] font-bold text-indigo-600 uppercase tracking-widest mb-3">
-                            <span>ธุรกิจ</span>
-                            <span class="mx-2">•</span>
-                            <span class="text-gray-400">วานนี้</span>
-                        </div>
-                        <h3 class="text-xl font-bold mb-4 leading-snug hover:text-indigo-600 transition cursor-pointer">Work From Anywhere: อนาคตของออฟฟิศสมัยใหม่</h3>
-                        <p class="text-gray-500 text-sm font-light line-clamp-2 mb-6">ทำไมบริษัทชั้นนำทั่วโลกถึงเริ่มเปลี่ยนนโยบายการเข้าออฟฟิศ และมันส่งผลดีต่อ Productivity จริงหรือ?</p>
-                        <a href="#" class="text-sm font-bold border-b-2 border-indigo-100 hover:border-indigo-600 transition pb-1">อ่านเพิ่มเติม</a>
-                    </div>
-                </article>
-            </div>
-        </div>
+        </header>
     </main>
 
-    <section class="py-20 bg-indigo-900 text-white overflow-hidden relative">
-        <div class="container mx-auto px-6 text-center relative z-10">
-            <h2 class="text-3xl md:text-4xl font-serif font-bold mb-6">ไม่พลาดทุกข้อมูลสำคัญ</h2>
-            <p class="text-indigo-200 mb-10 max-w-lg mx-auto font-light">สมัครรับข่าวสารรายสัปดาห์ ส่งตรงบทความคุณภาพและบทวิเคราะห์ที่คุณควรรู้ถึงอีเมลของคุณ</p>
-            <div class="flex flex-col md:flex-row justify-center gap-4 max-w-md mx-auto">
-                <input type="email" placeholder="อีเมลของคุณ" class="px-6 py-4 rounded-full bg-white/10 border border-white/20 text-white focus:outline-none focus:bg-white/20 w-full transition">
-                <button class="bg-white text-indigo-900 px-8 py-4 rounded-full font-bold hover:bg-indigo-100 transition whitespace-nowrap">ติดตาม</button>
+    <div id="auth-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[200] flex items-center justify-center hidden-section p-4">
+        <div class="bg-white w-full max-w-md rounded-[2.5rem] p-8 md:p-10 shadow-2xl relative">
+            <button onclick="hideAuthModal()" class="absolute top-6 right-6 text-gray-400 hover:text-black">✕</button>
+            
+            <h2 id="auth-title" class="text-3xl font-serif font-bold text-center mb-8">เข้าสู่ระบบ</h2>
+            
+            <div class="space-y-4">
+                <input type="email" id="auth-email" placeholder="อีเมล" class="w-full px-5 py-3 rounded-2xl bg-gray-50 border border-gray-100 focus:ring-2 focus:ring-indigo-500 outline-none transition">
+                <input type="password" id="auth-password" placeholder="รหัสผ่าน" class="w-full px-5 py-3 rounded-2xl bg-gray-50 border border-gray-100 focus:ring-2 focus:ring-indigo-500 outline-none transition">
+                <button id="auth-main-btn" class="w-full bg-indigo-600 text-white py-4 rounded-2xl font-bold hover:bg-indigo-700 transition mt-4">เข้าสู่ระบบ</button>
             </div>
-        </div>
-        <div class="absolute top-0 right-0 w-64 h-64 bg-indigo-500 rounded-full blur-[120px] opacity-20 -mr-32 -mt-32"></div>
-    </section>
 
-    <footer class="bg-white py-12 border-t">
-        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
-            <div class="text-xl font-serif font-bold text-indigo-900">INSIGHT.</div>
-            <div class="flex space-x-8 text-sm text-gray-400 font-light">
-                <a href="#" class="hover:text-indigo-600 transition">นโยบายความเป็นส่วนตัว</a>
-                <a href="#" class="hover:text-indigo-600 transition">ข้อกำหนดการใช้งาน</a>
-                <a href="#" class="hover:text-indigo-600 transition">ติดต่อโฆษณา</a>
-            </div>
-            <p class="text-xs text-gray-300">© 2025 INSIGHT KNOWLEDGE HUB. ALL RIGHTS RESERVED.</p>
+            <p class="text-center mt-6 text-sm text-gray-500">
+                <span id="auth-toggle-text">ยังไม่มีบัญชี?</span>
+                <button onclick="toggleAuthMode()" id="auth-toggle-btn" class="text-indigo-600 font-bold underline ml-1">สมัครสมาชิก</button>
+            </p>
         </div>
-    </footer>
+    </div>
 
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+        // 1. วาง Config ของคุณที่นี่
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT.firebaseapp.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT.appspot.com",
+            messagingSenderId: "...",
+            appId: "..."
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        let isLoginMode = true;
+
+        // 2. ระบบเช็คสถานะการล็อกอิน (Real-time)
+        onAuthStateChanged(auth, (user) => {
+            const loginBtn = document.getElementById('btn-login-ui');
+            const userInfo = document.getElementById('user-info-ui');
+            const displayEmail = document.getElementById('display-email');
+            const heroCta = document.getElementById('hero-cta');
+
+            if (user) {
+                // ถ้าล็อกอินแล้ว
+                loginBtn.classList.add('hidden-section');
+                userInfo.classList.remove('hidden-section');
+                displayEmail.innerText = user.email;
+                heroCta.innerHTML = `<span class="text-indigo-600 font-bold">คุณกำลังเข้าใช้งานในฐานะสมาชิก Premium</span>`;
+                hideAuthModal();
+            } else {
+                // ถ้ายังไม่ล็อกอิน
+                loginBtn.classList.remove('hidden-section');
+                userInfo.classList.add('hidden-section');
+                heroCta.innerHTML = `<button onclick="showAuthModal()" class="bg-indigo-600 text-white px-10 py-4 rounded-full font-bold shadow-lg shadow-indigo-200 hover:scale-105 transition">เริ่มต้นใช้งานฟรี</button>`;
+            }
+        });
+
+        // 3. ฟังก์ชันควบคุม UI
+        window.showAuthModal = () => document.getElementById('auth-modal').classList.remove('hidden-section');
+        window.hideAuthModal = () => document.getElementById('auth-modal').classList.add('hidden-section');
+
+        window.toggleAuthMode = () => {
+            isLoginMode = !isLoginMode;
+            document.getElementById('auth-title').innerText = isLoginMode ? 'เข้าสู่ระบบ' : 'สมัครสมาชิก';
+            document.getElementById('auth-main-btn').innerText = isLoginMode ? 'เข้าสู่ระบบ' : 'สมัครสมาชิก';
+            document.getElementById('auth-toggle-text').innerText = isLoginMode ? 'ยังไม่มีบัญชี?' : 'มีบัญชีอยู่แล้ว?';
+            document.getElementById('auth-toggle-btn').innerText = isLoginMode ? 'สมัครสมาชิก' : 'เข้าสู่ระบบ';
+        };
+
+        // 4. ฟังก์ชันจัดการ Firebase Auth
+        document.getElementById('auth-main-btn').addEventListener('click', async () => {
+            const email = document.getElementById('auth-email').value;
+            const password = document.getElementById('auth-password').value;
+
+            try {
+                if (isLoginMode) {
+                    await signInWithEmailAndPassword(auth, email, password);
+                } else {
+                    await createUserWithEmailAndPassword(auth, email, password);
+                    alert("ยินดีต้อนรับ! สมัครสมาชิกสำเร็จ");
+                }
+            } catch (error) {
+                alert("ผิดพลาด: " + error.message);
+            }
+        });
+
+        window.handleLogout = () => signOut(auth);
+    </script>
 </body>
 </html>
