@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INSIGHT. | ระบบข้อมูลพรีเมียม</title>
+    <title>INSIGHT. | Knowledge Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Kanit', sans-serif; transition: all 0.3s ease; }
+        body { font-family: 'Kanit', sans-serif; }
         .font-serif { font-family: 'Playfair Display', serif; }
-        .hidden-section { display: none !important; }
+        .page-section { display: none; }
+        .page-section.active { display: block; }
         .glass { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); }
     </style>
 </head>
@@ -17,49 +18,80 @@
 
     <nav class="glass sticky top-0 z-[100] border-b border-gray-100">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-serif font-bold tracking-tight text-indigo-900">INSIGHT.</a>
+            <button onclick="navigateTo('home')" class="text-2xl font-serif font-bold tracking-tight text-indigo-900">INSIGHT.</button>
             
             <div class="hidden md:flex space-x-8 text-sm font-medium">
-                <a href="#" class="hover:text-indigo-600">หน้าหลัก</a>
-                <a href="#" class="hover:text-indigo-600">บทความ</a>
-                <a href="#" class="hover:text-indigo-600">พรีเมียม</a>
+                <button onclick="navigateTo('home')" class="hover:text-indigo-600 transition">หน้าหลัก</button>
+                <button onclick="navigateTo('articles')" class="hover:text-indigo-600 transition">บทความ</button>
+                <button onclick="navigateTo('premium')" class="hover:text-indigo-600 transition">พรีเมียม ✨</button>
             </div>
 
             <div id="nav-auth-section">
                 <button onclick="showAuthModal()" id="btn-login-ui" class="bg-slate-900 text-white px-6 py-2 rounded-full text-sm hover:bg-indigo-600 transition">เข้าสู่ระบบ</button>
-                
-                <div id="user-info-ui" class="hidden-section flex items-center space-x-4">
-                    <span id="display-email" class="text-sm font-medium text-gray-600"></span>
-                    <button onclick="handleLogout()" class="text-sm text-rose-500 font-bold hover:underline">ออกจากระบบ</button>
+                <div id="user-info-ui" class="hidden flex items-center space-x-4">
+                    <span id="display-email" class="text-sm font-medium text-gray-500"></span>
+                    <button onclick="handleLogout()" class="text-sm text-rose-500 font-bold">ออกจากระบบ</button>
                 </div>
             </div>
         </div>
     </nav>
 
-    <main id="main-content">
-        <header class="py-12 md:py-20 bg-white">
-            <div class="container mx-auto px-6 text-center">
-                <h1 class="text-5xl md:text-7xl font-serif mb-6 leading-tight">ความรู้ที่ <span class="text-indigo-600">คัดสรร</span> <br>มาเพื่อคุณโดยเฉพาะ</h1>
-                <p class="text-gray-500 max-w-2xl mx-auto mb-10 font-light text-lg">เข้าถึงบทวิเคราะห์เจาะลึกและเทรนด์เทคโนโลยีล่าสุดก่อนใคร เพียงสมัครสมาชิกกับเราวันนี้</p>
-                <div id="hero-cta">
-                    <button onclick="showAuthModal()" class="bg-indigo-600 text-white px-10 py-4 rounded-full font-bold shadow-lg shadow-indigo-200 hover:scale-105 transition">เริ่มต้นใช้งานฟรี</button>
+    <section id="home-page" class="page-section active py-20">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-6xl font-serif mb-6 leading-tight">โลกแห่งความรู้ <br>ในมือคุณ</h1>
+            <p class="text-gray-500 max-w-xl mx-auto mb-10">เจาะลึกทุกประเด็นร้อนแรงและบทวิเคราะห์จากผู้เชี่ยวชาญ</p>
+            <button onclick="navigateTo('articles')" class="bg-indigo-600 text-white px-8 py-3 rounded-full font-bold shadow-lg hover:bg-indigo-700 transition">เริ่มอ่านเลย</button>
+        </div>
+    </section>
+
+    <section id="articles-page" class="page-section py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-serif font-bold mb-10">บทความทั้งหมด</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition">
+                    <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=800" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <span class="text-xs font-bold text-indigo-600 uppercase">Technology</span>
+                        <h3 class="text-lg font-bold mt-2">อนาคตของหุ่นยนต์ในปี 2026</h3>
+                        <p class="text-gray-400 text-sm mt-3">เจาะลึกการพัฒนา AI และ Robotics ที่จะเปลี่ยนโลกอุตสาหกรรม...</p>
+                    </div>
+                </div>
+                </div>
+        </div>
+    </section>
+
+    <section id="premium-page" class="page-section py-20 bg-slate-900 text-white min-h-[70vh]">
+        <div class="container mx-auto px-6">
+            <div id="premium-locked" class="text-center py-20">
+                <div class="text-6xl mb-6">🔒</div>
+                <h2 class="text-4xl font-serif font-bold mb-4">เนื้อหานี้สำหรับสมาชิกเท่านั้น</h2>
+                <p class="text-slate-400 mb-8">กรุณาเข้าสู่ระบบเพื่อเข้าถึงบทวิเคราะห์เจาะลึกพิเศษ</p>
+                <button onclick="showAuthModal()" class="bg-indigo-500 text-white px-8 py-3 rounded-full font-bold hover:bg-indigo-400">เข้าสู่ระบบตอนนี้</button>
+            </div>
+
+            <div id="premium-content" class="hidden">
+                <div class="flex items-center justify-between mb-10 border-b border-slate-700 pb-6">
+                    <h2 class="text-3xl font-serif font-bold">✨ Premium Insights</h2>
+                    <span class="bg-indigo-500/20 text-indigo-400 px-4 py-1 rounded-full text-xs border border-indigo-500/30">สมาชิกพรีเมียม</span>
+                </div>
+                <div class="bg-slate-800 p-8 rounded-3xl border border-slate-700">
+                    <h3 class="text-2xl font-bold mb-4 italic text-indigo-300">รายงานวิเคราะห์เศรษฐกิจประจำไตรมาสที่ 1</h3>
+                    <p class="text-slate-400 leading-relaxed mb-6">นี่คือเนื้อหาพิเศษเฉพาะคุณ: ข้อมูลเจาะลึกทิศทางการลงทุนในปีหน้า ซึ่งสรุปจากข้อมูลวงในของผู้เชี่ยวชาญระดับโลก...</p>
+                    <div class="h-32 bg-gradient-to-t from-slate-900 to-transparent rounded-lg flex items-center justify-center text-slate-500 uppercase tracking-widest text-sm">ดาวน์โหลดไฟล์ PDF รายงานฉบับเต็ม</div>
                 </div>
             </div>
-        </header>
-    </main>
+        </div>
+    </section>
 
-    <div id="auth-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[200] flex items-center justify-center hidden-section p-4">
-        <div class="bg-white w-full max-w-md rounded-[2.5rem] p-8 md:p-10 shadow-2xl relative">
+    <div id="auth-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[200] hidden flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-md rounded-[2.5rem] p-10 shadow-2xl relative">
             <button onclick="hideAuthModal()" class="absolute top-6 right-6 text-gray-400 hover:text-black">✕</button>
-            
             <h2 id="auth-title" class="text-3xl font-serif font-bold text-center mb-8">เข้าสู่ระบบ</h2>
-            
             <div class="space-y-4">
                 <input type="email" id="auth-email" placeholder="อีเมล" class="w-full px-5 py-3 rounded-2xl bg-gray-50 border border-gray-100 focus:ring-2 focus:ring-indigo-500 outline-none transition">
                 <input type="password" id="auth-password" placeholder="รหัสผ่าน" class="w-full px-5 py-3 rounded-2xl bg-gray-50 border border-gray-100 focus:ring-2 focus:ring-indigo-500 outline-none transition">
-                <button id="auth-main-btn" class="w-full bg-indigo-600 text-white py-4 rounded-2xl font-bold hover:bg-indigo-700 transition mt-4">เข้าสู่ระบบ</button>
+                <button id="auth-main-btn" class="w-full bg-indigo-600 text-white py-4 rounded-2xl font-bold hover:bg-indigo-700 transition mt-4">ตกลง</button>
             </div>
-
             <p class="text-center mt-6 text-sm text-gray-500">
                 <span id="auth-toggle-text">ยังไม่มีบัญชี?</span>
                 <button onclick="toggleAuthMode()" id="auth-toggle-btn" class="text-indigo-600 font-bold underline ml-1">สมัครสมาชิก</button>
@@ -71,73 +103,75 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-        // 1. วาง Config ของคุณที่นี่
+        // วาง Firebase Config ของคุณที่นี่
         const firebaseConfig = {
             apiKey: "YOUR_API_KEY",
             authDomain: "YOUR_PROJECT.firebaseapp.com",
             projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_PROJECT.appspot.com",
+            storageBucket: "...",
             messagingSenderId: "...",
             appId: "..."
         };
 
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
+        let currentUser = null;
 
-        let isLoginMode = true;
+        // ฟังก์ชันเปลี่ยนหน้า
+        window.navigateTo = (pageId) => {
+            document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+            document.getElementById(pageId + '-page').classList.add('active');
+            window.scrollTo(0, 0);
+        };
 
-        // 2. ระบบเช็คสถานะการล็อกอิน (Real-time)
+        // ตรวจสอบสถานะการ Login
         onAuthStateChanged(auth, (user) => {
+            currentUser = user;
             const loginBtn = document.getElementById('btn-login-ui');
             const userInfo = document.getElementById('user-info-ui');
-            const displayEmail = document.getElementById('display-email');
-            const heroCta = document.getElementById('hero-cta');
+            const premiumLocked = document.getElementById('premium-locked');
+            const premiumContent = document.getElementById('premium-content');
 
             if (user) {
-                // ถ้าล็อกอินแล้ว
-                loginBtn.classList.add('hidden-section');
-                userInfo.classList.remove('hidden-section');
-                displayEmail.innerText = user.email;
-                heroCta.innerHTML = `<span class="text-indigo-600 font-bold">คุณกำลังเข้าใช้งานในฐานะสมาชิก Premium</span>`;
+                loginBtn.classList.add('hidden');
+                userInfo.classList.remove('hidden');
+                document.getElementById('display-email').innerText = user.email;
+                
+                // เปิดล็อคหน้าพรีเมียม
+                premiumLocked.classList.add('hidden');
+                premiumContent.classList.remove('hidden');
                 hideAuthModal();
             } else {
-                // ถ้ายังไม่ล็อกอิน
-                loginBtn.classList.remove('hidden-section');
-                userInfo.classList.add('hidden-section');
-                heroCta.innerHTML = `<button onclick="showAuthModal()" class="bg-indigo-600 text-white px-10 py-4 rounded-full font-bold shadow-lg shadow-indigo-200 hover:scale-105 transition">เริ่มต้นใช้งานฟรี</button>`;
+                loginBtn.classList.remove('hidden');
+                userInfo.classList.add('hidden');
+                
+                // ปิดล็อคหน้าพรีเมียม
+                premiumLocked.classList.remove('hidden');
+                premiumContent.classList.add('hidden');
             }
         });
 
-        // 3. ฟังก์ชันควบคุม UI
-        window.showAuthModal = () => document.getElementById('auth-modal').classList.remove('hidden-section');
-        window.hideAuthModal = () => document.getElementById('auth-modal').classList.add('hidden-section');
+        // ระบบ Auth Control (เหมือนเดิมแต่ปรับปรุง UI)
+        window.showAuthModal = () => document.getElementById('auth-modal').classList.remove('hidden');
+        window.hideAuthModal = () => document.getElementById('auth-modal').classList.add('hidden');
+        window.handleLogout = () => signOut(auth);
 
+        document.getElementById('auth-main-btn').addEventListener('click', async () => {
+            const email = document.getElementById('auth-email').value;
+            const password = document.getElementById('auth-password').value;
+            try {
+                // เช็คโหมดและเรียก Firebase API
+                // (โค้ดส่วนนี้เหมือนเดิมจากตัวอย่างก่อนหน้า)
+                await (isLoginMode ? signInWithEmailAndPassword(auth, email, password) : createUserWithEmailAndPassword(auth, email, password));
+            } catch (e) { alert(e.message); }
+        });
+
+        let isLoginMode = true;
         window.toggleAuthMode = () => {
             isLoginMode = !isLoginMode;
             document.getElementById('auth-title').innerText = isLoginMode ? 'เข้าสู่ระบบ' : 'สมัครสมาชิก';
             document.getElementById('auth-main-btn').innerText = isLoginMode ? 'เข้าสู่ระบบ' : 'สมัครสมาชิก';
-            document.getElementById('auth-toggle-text').innerText = isLoginMode ? 'ยังไม่มีบัญชี?' : 'มีบัญชีอยู่แล้ว?';
-            document.getElementById('auth-toggle-btn').innerText = isLoginMode ? 'สมัครสมาชิก' : 'เข้าสู่ระบบ';
         };
-
-        // 4. ฟังก์ชันจัดการ Firebase Auth
-        document.getElementById('auth-main-btn').addEventListener('click', async () => {
-            const email = document.getElementById('auth-email').value;
-            const password = document.getElementById('auth-password').value;
-
-            try {
-                if (isLoginMode) {
-                    await signInWithEmailAndPassword(auth, email, password);
-                } else {
-                    await createUserWithEmailAndPassword(auth, email, password);
-                    alert("ยินดีต้อนรับ! สมัครสมาชิกสำเร็จ");
-                }
-            } catch (error) {
-                alert("ผิดพลาด: " + error.message);
-            }
-        });
-
-        window.handleLogout = () => signOut(auth);
     </script>
 </body>
 </html>
