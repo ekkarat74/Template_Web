@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INSIGHT. | Premium Knowledge Hub</title>
+    <title>INSIGHT. | Knowledge Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        body { font-family: 'Kanit', sans-serif; }
         .font-serif { font-family: 'Playfair Display', serif; }
         .page-section { display: none; }
         .page-section.active { display: block; }
         .glass { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); }
-        .hidden-ui { display: none !important; }
     </style>
 </head>
 <body class="bg-[#fafafa] text-slate-800">
@@ -21,114 +20,81 @@
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <button onclick="navigateTo('home')" class="text-2xl font-serif font-bold tracking-tight text-indigo-900">INSIGHT.</button>
             
-            <div class="hidden md:flex space-x-8 text-sm font-medium uppercase tracking-wider">
-                <button onclick="navigateTo('home')" class="hover:text-indigo-600 transition">Home</button>
-                <button onclick="navigateTo('articles')" class="hover:text-indigo-600 transition">Articles</button>
-                <button onclick="navigateTo('premium')" class="hover:text-indigo-600 transition">Premium ✨</button>
+            <div class="hidden md:flex space-x-8 text-sm font-medium">
+                <button onclick="navigateTo('home')" class="hover:text-indigo-600 transition">หน้าหลัก</button>
+                <button onclick="navigateTo('articles')" class="hover:text-indigo-600 transition">บทความ</button>
+                <button onclick="navigateTo('premium')" class="hover:text-indigo-600 transition">พรีเมียม ✨</button>
             </div>
 
             <div id="nav-auth-section">
-                <button onclick="showAuthModal()" id="btn-login-ui" class="bg-slate-900 text-white px-6 py-2 rounded-full text-sm hover:bg-indigo-600 transition">Sign In</button>
-                
-                <div id="user-info-ui" class="hidden-ui flex items-center space-x-4">
-                    <span id="display-email" class="text-sm font-medium text-gray-500 italic"></span>
-                    <button onclick="handleLogout()" class="text-sm text-rose-500 font-bold hover:underline">Sign Out</button>
+                <button onclick="showAuthModal()" id="btn-login-ui" class="bg-slate-900 text-white px-6 py-2 rounded-full text-sm hover:bg-indigo-600 transition">เข้าสู่ระบบ</button>
+                <div id="user-info-ui" class="hidden flex items-center space-x-4">
+                    <span id="display-email" class="text-sm font-medium text-gray-500"></span>
+                    <button onclick="handleLogout()" class="text-sm text-rose-500 font-bold">ออกจากระบบ</button>
                 </div>
             </div>
         </div>
     </nav>
 
-    <section id="home-page" class="page-section active min-h-[80vh] flex items-center">
-        <div class="container mx-auto px-6 py-20 flex flex-col lg:flex-row items-center gap-12">
-            <div class="lg:w-1/2 text-center lg:text-left">
-                <h1 class="text-6xl lg:text-8xl font-serif mb-8 leading-[1.1]">Curated <span class="text-indigo-600 italic">Wisdom</span> for You.</h1>
-                <p class="text-gray-500 text-lg lg:text-xl mb-10 font-light leading-relaxed">Access exclusive deep-dives and the latest technology trends. Join our community of thinkers today.</p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                    <button onclick="navigateTo('articles')" class="bg-indigo-600 text-white px-10 py-4 rounded-full font-bold shadow-xl shadow-indigo-100 hover:bg-indigo-700 transition">Start Reading</button>
-                    <button onclick="showAuthModal()" class="border border-slate-200 px-10 py-4 rounded-full font-bold hover:bg-white transition">Join Member</button>
-                </div>
-            </div>
-            <div class="lg:w-1/2">
-                <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&q=80&w=1000" class="rounded-[3rem] shadow-2xl" alt="Creative Hub">
-            </div>
+    <section id="home-page" class="page-section active py-20">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-6xl font-serif mb-6 leading-tight">โลกแห่งความรู้ <br>ในมือคุณ</h1>
+            <p class="text-gray-500 max-w-xl mx-auto mb-10">เจาะลึกทุกประเด็นร้อนแรงและบทวิเคราะห์จากผู้เชี่ยวชาญ</p>
+            <button onclick="navigateTo('articles')" class="bg-indigo-600 text-white px-8 py-3 rounded-full font-bold shadow-lg hover:bg-indigo-700 transition">เริ่มอ่านเลย</button>
         </div>
     </section>
 
     <section id="articles-page" class="page-section py-20">
         <div class="container mx-auto px-6">
-            <div class="mb-16">
-                <h2 class="text-4xl font-serif font-bold">Latest Insights</h2>
-                <div class="h-1 w-20 bg-indigo-600 mt-4"></div>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group cursor-pointer">
-                    <div class="overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800" class="w-full h-56 object-cover group-hover:scale-105 transition duration-500">
-                    </div>
-                    <div class="p-8">
-                        <span class="text-indigo-600 text-xs font-bold uppercase tracking-widest">Future Tech</span>
-                        <h3 class="text-xl font-bold mt-3 group-hover:text-indigo-600">The Rise of Autonomous AI Agents in 2026</h3>
-                        <p class="text-gray-400 text-sm mt-4 leading-relaxed">Exploring how self-operating AI is reshaping the global workforce...</p>
+            <h2 class="text-3xl font-serif font-bold mb-10">บทความทั้งหมด</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition">
+                    <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=800" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <span class="text-xs font-bold text-indigo-600 uppercase">Technology</span>
+                        <h3 class="text-lg font-bold mt-2">อนาคตของหุ่นยนต์ในปี 2026</h3>
+                        <p class="text-gray-400 text-sm mt-3">เจาะลึกการพัฒนา AI และ Robotics ที่จะเปลี่ยนโลกอุตสาหกรรม...</p>
                     </div>
                 </div>
-
-                <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group cursor-pointer">
-                    <div class="overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&q=80&w=800" class="w-full h-56 object-cover group-hover:scale-105 transition duration-500">
-                    </div>
-                    <div class="p-8">
-                        <span class="text-indigo-600 text-xs font-bold uppercase tracking-widest">Mindfulness</span>
-                        <h3 class="text-xl font-bold mt-3 group-hover:text-indigo-600">Digital Detox: A Guide for Modern Professionals</h3>
-                        <p class="text-gray-400 text-sm mt-4 leading-relaxed">Reclaiming focus in an era of constant notifications and digital noise...</p>
-                    </div>
                 </div>
-            </div>
         </div>
     </section>
 
-    <section id="premium-page" class="page-section py-20 bg-slate-950 text-white min-h-[85vh]">
+    <section id="premium-page" class="page-section py-20 bg-slate-900 text-white min-h-[70vh]">
         <div class="container mx-auto px-6">
-            <div id="premium-locked" class="text-center py-24">
-                <div class="w-24 h-24 bg-slate-900 rounded-full flex items-center justify-center mx-auto mb-8 text-4xl border border-slate-800">🔒</div>
-                <h2 class="text-5xl font-serif font-bold mb-6 italic text-indigo-400">Exclusive Content Locked</h2>
-                <p class="text-slate-400 max-w-md mx-auto mb-10 font-light">Join our Premium circle to unlock industry analysis, secret reports, and expert interviews.</p>
-                <button onclick="showAuthModal()" class="bg-white text-slate-900 px-12 py-4 rounded-full font-bold hover:bg-indigo-100 transition">Unlock with Premium</button>
+            <div id="premium-locked" class="text-center py-20">
+                <div class="text-6xl mb-6">🔒</div>
+                <h2 class="text-4xl font-serif font-bold mb-4">เนื้อหานี้สำหรับสมาชิกเท่านั้น</h2>
+                <p class="text-slate-400 mb-8">กรุณาเข้าสู่ระบบเพื่อเข้าถึงบทวิเคราะห์เจาะลึกพิเศษ</p>
+                <button onclick="showAuthModal()" class="bg-indigo-500 text-white px-8 py-3 rounded-full font-bold hover:bg-indigo-400">เข้าสู่ระบบตอนนี้</button>
             </div>
 
-            <div id="premium-content" class="hidden-ui">
-                <div class="flex items-center justify-between mb-16 border-b border-slate-800 pb-10">
-                    <h2 class="text-4xl font-serif font-bold">✨ Premium Dashboard</h2>
-                    <span class="bg-indigo-500 text-white px-6 py-1 rounded-full text-xs font-bold uppercase tracking-tighter">Gold Member</span>
+            <div id="premium-content" class="hidden">
+                <div class="flex items-center justify-between mb-10 border-b border-slate-700 pb-6">
+                    <h2 class="text-3xl font-serif font-bold">✨ Premium Insights</h2>
+                    <span class="bg-indigo-500/20 text-indigo-400 px-4 py-1 rounded-full text-xs border border-indigo-500/30">สมาชิกพรีเมียม</span>
                 </div>
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                    <div class="bg-slate-900 p-10 rounded-[3rem] border border-slate-800">
-                        <h3 class="text-2xl font-bold mb-4 text-indigo-300">Q1 Global Market Analysis</h3>
-                        <p class="text-slate-400 leading-relaxed mb-8 italic">"This is a confidential report prepared for our members regarding the hyper-inflation trends and crypto recovery strategies..."</p>
-                        <button class="text-indigo-400 font-bold hover:text-white underline underline-offset-8">Download PDF Report</button>
-                    </div>
-                    <div class="bg-slate-900 p-10 rounded-[3rem] border border-slate-800">
-                        <h3 class="text-2xl font-bold mb-4 text-indigo-300">Exclusive Expert Webinar</h3>
-                        <p class="text-slate-400 leading-relaxed mb-8 italic">Join Dr. Sarah Jenkins for a live Q&A session about the ethics of AGI development.</p>
-                        <button class="bg-indigo-600 px-6 py-2 rounded-xl text-sm font-bold">Join Meeting</button>
-                    </div>
+                <div class="bg-slate-800 p-8 rounded-3xl border border-slate-700">
+                    <h3 class="text-2xl font-bold mb-4 italic text-indigo-300">รายงานวิเคราะห์เศรษฐกิจประจำไตรมาสที่ 1</h3>
+                    <p class="text-slate-400 leading-relaxed mb-6">นี่คือเนื้อหาพิเศษเฉพาะคุณ: ข้อมูลเจาะลึกทิศทางการลงทุนในปีหน้า ซึ่งสรุปจากข้อมูลวงในของผู้เชี่ยวชาญระดับโลก...</p>
+                    <div class="h-32 bg-gradient-to-t from-slate-900 to-transparent rounded-lg flex items-center justify-center text-slate-500 uppercase tracking-widest text-sm">ดาวน์โหลดไฟล์ PDF รายงานฉบับเต็ม</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <div id="auth-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-[200] hidden-ui flex items-center justify-center p-6">
-        <div class="bg-white w-full max-w-md rounded-[3rem] p-10 shadow-2xl relative">
-            <button onclick="hideAuthModal()" class="absolute top-8 right-8 text-gray-400 hover:text-black transition">✕</button>
-            <h2 id="auth-title" class="text-3xl font-serif font-bold text-center mb-8">Sign In</h2>
+    <div id="auth-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[200] hidden flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-md rounded-[2.5rem] p-10 shadow-2xl relative">
+            <button onclick="hideAuthModal()" class="absolute top-6 right-6 text-gray-400 hover:text-black">✕</button>
+            <h2 id="auth-title" class="text-3xl font-serif font-bold text-center mb-8">เข้าสู่ระบบ</h2>
             <div class="space-y-4">
-                <input type="email" id="auth-email" placeholder="Email Address" class="w-full px-6 py-4 rounded-2xl bg-gray-50 border border-gray-100 focus:ring-2 focus:ring-indigo-500 outline-none transition">
-                <input type="password" id="auth-password" placeholder="Password" class="w-full px-6 py-4 rounded-2xl bg-gray-50 border border-gray-100 focus:ring-2 focus:ring-indigo-500 outline-none transition">
-                <button id="auth-main-btn" class="w-full bg-slate-900 text-white py-4 rounded-2xl font-bold hover:bg-indigo-600 transition shadow-lg mt-4 uppercase tracking-widest text-sm">Continue</button>
+                <input type="email" id="auth-email" placeholder="อีเมล" class="w-full px-5 py-3 rounded-2xl bg-gray-50 border border-gray-100 focus:ring-2 focus:ring-indigo-500 outline-none transition">
+                <input type="password" id="auth-password" placeholder="รหัสผ่าน" class="w-full px-5 py-3 rounded-2xl bg-gray-50 border border-gray-100 focus:ring-2 focus:ring-indigo-500 outline-none transition">
+                <button id="auth-main-btn" class="w-full bg-indigo-600 text-white py-4 rounded-2xl font-bold hover:bg-indigo-700 transition mt-4">ตกลง</button>
             </div>
-            <p class="text-center mt-8 text-sm text-gray-400">
-                <span id="auth-toggle-text">Don't have an account?</span>
-                <button onclick="toggleAuthMode()" id="auth-toggle-btn" class="text-indigo-600 font-bold underline ml-1">Create Account</button>
+            <p class="text-center mt-6 text-sm text-gray-500">
+                <span id="auth-toggle-text">ยังไม่มีบัญชี?</span>
+                <button onclick="toggleAuthMode()" id="auth-toggle-btn" class="text-indigo-600 font-bold underline ml-1">สมัครสมาชิก</button>
             </p>
         </div>
     </div>
@@ -137,73 +103,75 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-        // *** Paste your Firebase Config here ***
+        // วาง Firebase Config ของคุณที่นี่
         const firebaseConfig = {
             apiKey: "YOUR_API_KEY",
             authDomain: "YOUR_PROJECT.firebaseapp.com",
             projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_PROJECT.appspot.com",
+            storageBucket: "...",
             messagingSenderId: "...",
             appId: "..."
         };
 
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
-        let isLoginMode = true;
+        let currentUser = null;
 
-        // Page Navigation Logic
+        // ฟังก์ชันเปลี่ยนหน้า
         window.navigateTo = (pageId) => {
             document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
             document.getElementById(pageId + '-page').classList.add('active');
             window.scrollTo(0, 0);
         };
 
-        // Real-time Auth Observer
+        // ตรวจสอบสถานะการ Login
         onAuthStateChanged(auth, (user) => {
+            currentUser = user;
             const loginBtn = document.getElementById('btn-login-ui');
             const userInfo = document.getElementById('user-info-ui');
             const premiumLocked = document.getElementById('premium-locked');
             const premiumContent = document.getElementById('premium-content');
 
             if (user) {
-                loginBtn.classList.add('hidden-ui');
-                userInfo.classList.remove('hidden-ui');
+                loginBtn.classList.add('hidden');
+                userInfo.classList.remove('hidden');
                 document.getElementById('display-email').innerText = user.email;
-                premiumLocked.classList.add('hidden-ui');
-                premiumContent.classList.remove('hidden-ui');
+                
+                // เปิดล็อคหน้าพรีเมียม
+                premiumLocked.classList.add('hidden');
+                premiumContent.classList.remove('hidden');
                 hideAuthModal();
             } else {
-                loginBtn.classList.remove('hidden-ui');
-                userInfo.classList.add('hidden-ui');
-                premiumLocked.classList.remove('hidden-ui');
-                premiumContent.classList.add('hidden-ui');
+                loginBtn.classList.remove('hidden');
+                userInfo.classList.add('hidden');
+                
+                // ปิดล็อคหน้าพรีเมียม
+                premiumLocked.classList.remove('hidden');
+                premiumContent.classList.add('hidden');
             }
         });
 
-        // Auth Controls
-        window.showAuthModal = () => document.getElementById('auth-modal').classList.remove('hidden-ui');
-        window.hideAuthModal = () => document.getElementById('auth-modal').classList.add('hidden-ui');
+        // ระบบ Auth Control (เหมือนเดิมแต่ปรับปรุง UI)
+        window.showAuthModal = () => document.getElementById('auth-modal').classList.remove('hidden');
+        window.hideAuthModal = () => document.getElementById('auth-modal').classList.add('hidden');
         window.handleLogout = () => signOut(auth);
-
-        window.toggleAuthMode = () => {
-            isLoginMode = !isLoginMode;
-            document.getElementById('auth-title').innerText = isLoginMode ? 'Sign In' : 'Join Insight';
-            document.getElementById('auth-toggle-text').innerText = isLoginMode ? "Don't have an account?" : "Already a member?";
-            document.getElementById('auth-toggle-btn').innerText = isLoginMode ? 'Create Account' : 'Sign In';
-        };
 
         document.getElementById('auth-main-btn').addEventListener('click', async () => {
             const email = document.getElementById('auth-email').value;
             const password = document.getElementById('auth-password').value;
             try {
-                if (isLoginMode) {
-                    await signInWithEmailAndPassword(auth, email, password);
-                } else {
-                    await createUserWithEmailAndPassword(auth, email, password);
-                    alert("Welcome to the community!");
-                }
-            } catch (e) { alert("Error: " + e.message); }
+                // เช็คโหมดและเรียก Firebase API
+                // (โค้ดส่วนนี้เหมือนเดิมจากตัวอย่างก่อนหน้า)
+                await (isLoginMode ? signInWithEmailAndPassword(auth, email, password) : createUserWithEmailAndPassword(auth, email, password));
+            } catch (e) { alert(e.message); }
         });
+
+        let isLoginMode = true;
+        window.toggleAuthMode = () => {
+            isLoginMode = !isLoginMode;
+            document.getElementById('auth-title').innerText = isLoginMode ? 'เข้าสู่ระบบ' : 'สมัครสมาชิก';
+            document.getElementById('auth-main-btn').innerText = isLoginMode ? 'เข้าสู่ระบบ' : 'สมัครสมาชิก';
+        };
     </script>
 </body>
 </html>
