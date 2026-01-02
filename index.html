@@ -3,137 +3,219 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INSIGHT. | Premium Knowledge Hub</title>
+    <title>INSIGHT. | Knowledge Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Kanit', sans-serif; scroll-behavior: smooth; }
+        body { font-family: 'Kanit', sans-serif; }
         .font-serif { font-family: 'Playfair Display', serif; }
+        /* ระบบสลับหน้า */
         .page-section { display: none; }
-        .page-section.active { display: block; }
-        .glass { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(15px); }
-        .hero-gradient { background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.7)); }
-        .card-shadow { transition: all 0.4s ease; }
-        .card-shadow:hover { transform: translateY(-10px); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15); }
+        .page-section.active { display: block; animation: fadeIn 0.5s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        .glass { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); }
+        .hero-overlay { background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.8)); }
     </style>
 </head>
-<body class="bg-[#f8fafc] text-slate-900">
+<body class="bg-[#fcfcfc] text-slate-900">
 
     <nav class="glass sticky top-0 z-[100] border-b border-gray-100">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <button onclick="navigateTo('home')" class="text-2xl font-serif font-bold tracking-tight text-indigo-900">INSIGHT.</button>
             
-            <div class="hidden md:flex space-x-10 text-sm font-medium tracking-wide">
-                <button onclick="navigateTo('home')" class="hover:text-indigo-600 transition">หน้าหลัก</button>
-                <button onclick="navigateTo('articles')" class="hover:text-indigo-600 transition">บทความ</button>
-                <button onclick="navigateTo('premium')" class="hover:text-indigo-600 transition text-indigo-600">พรีเมียม ✨</button>
+            <div class="hidden md:flex space-x-10 text-sm font-medium">
+                <button onclick="navigateTo('home')" class="nav-link hover:text-indigo-600 transition">หน้าหลัก</button>
+                <button onclick="navigateTo('articles')" class="nav-link hover:text-indigo-600 transition">บทความ</button>
+                <button onclick="navigateTo('premium')" class="nav-link text-indigo-600 font-bold">พรีเมียม ✨</button>
             </div>
 
             <div id="nav-auth-section">
-                <button onclick="showAuthModal()" id="btn-login-ui" class="bg-indigo-600 text-white px-8 py-2.5 rounded-full text-sm font-semibold hover:bg-indigo-700 transition shadow-lg shadow-indigo-200">เข้าสู่ระบบ</button>
+                <button onclick="showAuthModal()" id="btn-login-ui" class="bg-indigo-600 text-white px-6 py-2 rounded-full text-sm font-semibold hover:bg-indigo-700 transition shadow-lg shadow-indigo-100">เข้าสู่ระบบ</button>
                 <div id="user-info-ui" class="hidden flex items-center space-x-4">
-                    <span id="display-email" class="text-sm font-medium text-slate-500 italic"></span>
-                    <button onclick="handleLogout()" class="text-xs bg-slate-100 px-3 py-1.5 rounded-full text-rose-500 font-bold hover:bg-rose-50">ออกจากระบบ</button>
+                    <span id="display-email" class="text-sm font-medium text-slate-500"></span>
+                    <button onclick="handleLogout()" class="text-xs text-rose-500 font-bold border border-rose-100 px-3 py-1 rounded-full hover:bg-rose-50">Log out</button>
                 </div>
             </div>
         </div>
     </nav>
 
     <section id="home-page" class="page-section active">
-        <div class="relative h-[600px] overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1920" class="w-full h-full object-cover">
-            <div class="absolute inset-0 hero-gradient flex items-center">
-                <div class="container mx-auto px-6">
-                    <div class="max-w-3xl text-white">
-                        <span class="bg-indigo-600 text-[10px] uppercase tracking-widest px-3 py-1 rounded-full mb-4 inline-block">Trending Now</span>
-                        <h1 class="text-5xl md:text-7xl font-serif font-bold mb-6 leading-tight">เจาะลึกรหัสลับ <br>แห่งการพัฒนาเมืองใหม่</h1>
-                        <p class="text-lg text-slate-200 mb-8 font-light leading-relaxed">บทวิเคราะห์พิเศษ: ก้าวต่อไปของ Smart City และเทคโนโลยีที่กำลังจะเปลี่ยนโฉมหน้าอสังหาริมทรัพย์ในอีก 10 ปีข้างหน้า</p>
-                        <button onclick="navigateTo('articles')" class="bg-white text-indigo-900 px-10 py-4 rounded-full font-bold hover:bg-indigo-50 transition flex items-center space-x-2">
-                            <span>อ่านบทความนี้</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
-                        </button>
-                    </div>
+        <div class="relative h-[550px]">
+            <img src="https://images.unsplash.com/photo-1451187534959-4445a1e5c0d6?auto=format&fit=crop&q=80&w=1920" class="w-full h-full object-cover">
+            <div class="absolute inset-0 hero-overlay flex items-center">
+                <div class="container mx-auto px-6 text-white">
+                    <h1 class="text-5xl md:text-7xl font-serif font-bold mb-6">Explore the <br>Deep Insight.</h1>
+                    <p class="max-w-xl text-slate-300 mb-8 font-light">บทวิเคราะห์เทคโนโลยีและเศรษฐกิจโลกที่คัดสรรมาเพื่อคุณโดยเฉพาะ</p>
+                    <button onclick="navigateTo('articles')" class="bg-white text-indigo-900 px-10 py-4 rounded-full font-bold hover:scale-105 transition">เริ่มอ่านบทความ</button>
                 </div>
             </div>
         </div>
-
-        <div class="container mx-auto px-6 py-20">
-            <h2 class="text-3xl font-serif font-bold mb-12">บทความที่คุณอาจสนใจ</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="bg-white rounded-3xl overflow-hidden card-shadow border border-gray-50">
-                    <div class="relative h-56">
-                        <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover">
-                        <span class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-[10px] font-bold text-indigo-600 uppercase">Architecture</span>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-lg font-bold mb-2">5 ดีไซน์สุดล้ำที่จะเปลี่ยนบ้านคุณให้ยั่งยืน</h3>
-                        <p class="text-gray-400 text-xs leading-relaxed mb-4">นวัตกรรม Green Building ที่ช่วยลดการใช้พลังงานได้ถึง 40% สำหรับอาคารสมัยใหม่...</p>
-                        <a href="#" class="text-indigo-600 text-xs font-bold hover:underline">อ่านต่อ &rarr;</a>
-                    </div>
+        <div class="container mx-auto px-6 py-20 text-center">
+            <h2 class="text-3xl font-serif font-bold mb-4">ทำไมต้องเลือก INSIGHT?</h2>
+            <p class="text-gray-400 mb-12">เรานำเสนอข้อมูลที่ลึกกว่าข่าวทั่วไป พร้อมมุมมองจากผู้เชี่ยวชาญตัวจริง</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="p-8 bg-white rounded-3xl border border-gray-100 shadow-sm">
+                    <div class="text-4xl mb-4">🚀</div>
+                    <h4 class="font-bold mb-2">อัปเดตรวดเร็ว</h4>
+                    <p class="text-sm text-gray-500 font-light">ไม่พลาดทุกความเคลื่อนไหวในโลกเทคโนโลยี</p>
                 </div>
-                <div class="bg-white rounded-3xl overflow-hidden card-shadow border border-gray-50">
-                    <div class="relative h-56">
-                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover">
-                        <span class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-[10px] font-bold text-indigo-600 uppercase">Technology</span>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-lg font-bold mb-2">AI & Big Data: กุญแจสู่การเติบโตทางธุรกิจ</h3>
-                        <p class="text-gray-400 text-xs leading-relaxed mb-4">วิธีที่บริษัทระดับโลกใช้ข้อมูลมหาศาลเพื่อวิเคราะห์พฤติกรรมผู้บริโภคได้อย่างแม่นยำ...</p>
-                        <a href="#" class="text-indigo-600 text-xs font-bold hover:underline">อ่านต่อ &rarr;</a>
-                    </div>
+                <div class="p-8 bg-white rounded-3xl border border-gray-100 shadow-sm">
+                    <div class="text-4xl mb-4">💎</div>
+                    <h4 class="font-bold mb-2">เนื้อหาพรีเมียม</h4>
+                    <p class="text-sm text-gray-500 font-light">บทความเจาะลึกพิเศษสำหรับสมาชิกเท่านั้น</p>
                 </div>
-                </div>
-            
-            <div class="text-center mt-16">
-                <button onclick="navigateTo('articles')" class="border-2 border-slate-900 text-slate-900 px-8 py-3 rounded-full font-bold hover:bg-slate-900 hover:text-white transition">ดูบทความทั้งหมด</button>
-            </div>
-        </div>
-
-        <div class="bg-white py-20 border-t border-gray-50">
-            <div class="container mx-auto px-6">
-                <h2 class="text-center text-3xl font-serif font-bold mb-16">เสียงจากผู้อ่านของเรา</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                    <div class="p-8 bg-slate-50 rounded-3xl">
-                        <p class="italic text-slate-600 mb-6">"Insight ช่วยให้ผมไม่พลาดเทรนด์สำคัญๆ ในวงการเทคโนโลยี บทความเขียนได้ดีมากครับ"</p>
-                        <p class="font-bold">คุณวินัย วรรณทอง</p>
-                        <p class="text-xs text-gray-400 italic">CEO Tech Startup</p>
-                    </div>
-                    <div class="p-8 bg-slate-50 rounded-3xl border-t-4 border-indigo-600">
-                        <p class="italic text-slate-600 mb-6">"คุ้มค่ามากสำหรับการเป็นสมาชิกพรีเมียม ข้อมูลเจาะลึกที่หาไม่ได้จากเว็บข่าวทั่วไป"</p>
-                        <p class="font-bold">คุณสมชาย มุ่งมั่น</p>
-                        <p class="text-xs text-gray-400 italic">Financial Analyst</p>
-                    </div>
+                <div class="p-8 bg-white rounded-3xl border border-gray-100 shadow-sm">
+                    <div class="text-4xl mb-4">🌍</div>
+                    <h4 class="font-bold mb-2">มุมมองระดับโลก</h4>
+                    <p class="text-sm text-gray-500 font-light">รวบรวมข้อมูลจากแหล่งข่าวที่น่าเชื่อถือทั่วโลก</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <section id="articles-page" class="page-section py-16">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-serif font-bold mb-12">บทความล่าสุด</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="group cursor-pointer">
+                    <div class="overflow-hidden rounded-2xl mb-4 h-60">
+                        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <span class="text-indigo-600 text-xs font-bold uppercase tracking-widest">Cyber Security</span>
+                    <h3 class="text-xl font-bold mt-2 group-hover:text-indigo-600 transition">วิธีป้องกันข้อมูลรั่วไหลในปี 2026</h3>
+                </div>
+                <div class="group cursor-pointer">
+                    <div class="overflow-hidden rounded-2xl mb-4 h-60">
+                        <img src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <span class="text-indigo-600 text-xs font-bold uppercase tracking-widest">Finance</span>
+                    <h3 class="text-xl font-bold mt-2 group-hover:text-indigo-600 transition">อนาคตของธนาคารในยุค AI-First</h3>
+                </div>
+                <div class="group cursor-pointer">
+                    <div class="overflow-hidden rounded-2xl mb-4 h-60">
+                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <span class="text-indigo-600 text-xs font-bold uppercase tracking-widest">Lifestyle</span>
+                    <h3 class="text-xl font-bold mt-2 group-hover:text-indigo-600 transition">Work-Life Balance ที่ทำได้จริง</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="premium-page" class="page-section py-20 min-h-[70vh]">
+        <div class="container mx-auto px-6">
+            <div id="premium-unlocked" class="hidden">
+                <div class="bg-indigo-900 rounded-[3rem] p-12 text-white flex flex-col md:flex-row items-center gap-10">
+                    <div class="md:w-1/2">
+                        <span class="bg-indigo-500 text-[10px] px-3 py-1 rounded-full uppercase mb-4 inline-block">Exclusive Content</span>
+                        <h2 class="text-4xl font-serif font-bold mb-6">บทวิเคราะห์เศรษฐกิจประจำสัปดาห์</h2>
+                        <p class="text-indigo-200 font-light mb-8 leading-relaxed">ข้อมูลลับเฉพาะสมาชิก: แนวโน้มอัตราดอกเบี้ยและผลกระทบต่อตลาดหุ้นไทยในเดือนหน้า...</p>
+                        <button class="bg-white text-indigo-900 px-8 py-3 rounded-full font-bold">ดาวน์โหลดรายงาน (PDF)</button>
+                    </div>
+                    <div class="md:w-1/2 bg-white/10 p-6 rounded-2xl backdrop-blur-md border border-white/10">
+                        <h4 class="font-bold mb-4">สารบัญเนื้อหาพรีเมียม</h4>
+                        <ul class="text-sm space-y-3 text-indigo-100 font-light">
+                            <li>• เจาะลึกตลาด Crypto ไตรมาส 1</li>
+                            <li>• เทคโนโลยีชิปประมวลผลรุ่นล่าสุด</li>
+                            <li>• กลยุทธ์การทำธุรกิจปี 2026</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="premium-locked" class="text-center py-20">
+                <h2 class="text-4xl font-serif font-bold mb-6 italic text-slate-300">"The Best Knowledge is Reserved."</h2>
+                <p class="text-slate-500 mb-10 max-w-md mx-auto">กรุณาเข้าสู่ระบบเพื่อเข้าถึงเนื้อหาระดับพรีเมียมและรายงานฉบับเต็ม</p>
+                <button onclick="showAuthModal()" class="bg-indigo-600 text-white px-10 py-4 rounded-full font-bold shadow-xl shadow-indigo-100">เข้าสู่ระบบทันที</button>
+            </div>
+        </div>
+    </section>
+
+    <div id="auth-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[200] hidden flex items-center justify-center p-6">
+        <div class="bg-white w-full max-w-md rounded-[2.5rem] p-10 relative">
+            <button onclick="hideAuthModal()" class="absolute top-6 right-6 text-gray-400">✕</button>
+            <h2 id="auth-title" class="text-3xl font-serif font-bold text-center mb-8">เข้าสู่ระบบ</h2>
+            <div class="space-y-4">
+                <input type="email" id="auth-email" placeholder="Email" class="w-full px-5 py-3 rounded-2xl bg-gray-50 border border-gray-100 focus:ring-2 focus:ring-indigo-500 outline-none">
+                <input type="password" id="auth-password" placeholder="Password" class="w-full px-5 py-3 rounded-2xl bg-gray-50 border border-gray-100 focus:ring-2 focus:ring-indigo-500 outline-none">
+                <button id="auth-main-btn" class="w-full bg-indigo-600 text-white py-4 rounded-2xl font-bold hover:bg-indigo-700 transition mt-4 shadow-lg shadow-indigo-100">เข้าสู่ระบบ</button>
+            </div>
+            <p class="text-center mt-6 text-sm text-gray-500">
+                <span id="auth-toggle-text">ยังไม่มีบัญชี?</span>
+                <button onclick="toggleAuthMode()" id="auth-toggle-btn" class="text-indigo-600 font-bold underline ml-1">สมัครสมาชิก</button>
+            </p>
+        </div>
+    </div>
+
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-        const firebaseConfig = { /* วาง CONFIG ของคุณที่นี่ */ };
+        // *** ใส่ Firebase Config ของคุณตรงนี้ ***
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT.firebaseapp.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "...",
+            messagingSenderId: "...",
+            appId: "..."
+        };
+
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
 
-        // หน้าเว็บสลับไปมา
+        // 1. ระบบเปลี่ยนหน้า
         window.navigateTo = (pageId) => {
-            document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.page-section').forEach(section => section.classList.remove('active'));
             document.getElementById(pageId + '-page').classList.add('active');
             window.scrollTo(0, 0);
         };
 
+        // 2. ระบบเช็คสถานะการเข้าสู่ระบบ
         onAuthStateChanged(auth, (user) => {
             const loginBtn = document.getElementById('btn-login-ui');
             const userInfo = document.getElementById('user-info-ui');
+            const premiumLocked = document.getElementById('premium-locked');
+            const premiumUnlocked = document.getElementById('premium-unlocked');
+
             if (user) {
                 loginBtn.classList.add('hidden');
                 userInfo.classList.remove('hidden');
                 document.getElementById('display-email').innerText = user.email;
+                premiumLocked.classList.add('hidden');
+                premiumUnlocked.classList.remove('hidden');
+                hideAuthModal();
             } else {
                 loginBtn.classList.remove('hidden');
                 userInfo.classList.add('hidden');
+                premiumLocked.classList.remove('hidden');
+                premiumUnlocked.classList.add('hidden');
             }
+        });
+
+        // 3. จัดการ Auth Modal
+        let isLoginMode = true;
+        window.showAuthModal = () => document.getElementById('auth-modal').classList.remove('hidden');
+        window.hideAuthModal = () => document.getElementById('auth-modal').classList.add('hidden');
+        window.toggleAuthMode = () => {
+            isLoginMode = !isLoginMode;
+            document.getElementById('auth-title').innerText = isLoginMode ? 'เข้าสู่ระบบ' : 'สมัครสมาชิก';
+            document.getElementById('auth-main-btn').innerText = isLoginMode ? 'เข้าสู่ระบบ' : 'สมัครสมาชิก';
+            document.getElementById('auth-toggle-text').innerText = isLoginMode ? 'ยังไม่มีบัญชี?' : 'มีบัญชีอยู่แล้ว?';
+            document.getElementById('auth-toggle-btn').innerText = isLoginMode ? 'สมัครสมาชิก' : 'เข้าสู่ระบบ';
+        };
+
+        // 4. ทำงานจริง Login / Register
+        document.getElementById('auth-main-btn').addEventListener('click', async () => {
+            const email = document.getElementById('auth-email').value;
+            const password = document.getElementById('auth-password').value;
+            try {
+                if (isLoginMode) {
+                    await signInWithEmailAndPassword(auth, email, password);
+                } else {
+                    await createUserWithEmailAndPassword(auth, email, password);
+                }
+            } catch (err) { alert(err.message); }
         });
 
         window.handleLogout = () => signOut(auth);
