@@ -111,87 +111,91 @@
     </div>
 
     <script>
-        // --- ส่วนที่ 1: การตั้งค่า Supabase (แก้ไขตรงนี้!) ---
-        const SUPABASE_URL = 'https://glmxblgtvtgjoegyscva.supabase.co';
-        const SUPABASE_KEY = 'sb_publishable_pZXXnhEAlkQQlkkm-QNOSQ_Uu0XEzLg';
-        const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    // --- ส่วนที่ 1: การตั้งค่า Supabase ---
+    const SUPABASE_URL = 'https://glmxblgtvtgjoegyscva.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_pZXXnhEAlkQQlkkm-QNOSQ_Uu0XEzLg';
+    
+    // แก้ไขตรงนี้: เปลี่ยนชื่อตัวแปรเป็น supabaseClient เพื่อไม่ให้ซ้ำกับ Library
+    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-        // --- ส่วนที่ 2: ระบบจัดการ Authentication ---
-        let isLoginMode = true;
+    // --- ส่วนที่ 2: ระบบจัดการ Authentication ---
+    let isLoginMode = true;
 
-        async function updateUI(user) {
-            const loginBtn = document.getElementById('btn-login-ui');
-            const userInfo = document.getElementById('user-info-ui');
-            const premiumLocked = document.getElementById('premium-locked');
-            const premiumUnlocked = document.getElementById('premium-unlocked');
+    async function updateUI(user) {
+        const loginBtn = document.getElementById('btn-login-ui');
+        const userInfo = document.getElementById('user-info-ui');
+        const premiumLocked = document.getElementById('premium-locked');
+        const premiumUnlocked = document.getElementById('premium-unlocked');
 
-            if (user) {
-                loginBtn.classList.add('hidden');
-                userInfo.classList.remove('hidden');
-                document.getElementById('display-email').innerText = user.email;
-                premiumLocked.classList.add('hidden');
-                premiumUnlocked.classList.remove('hidden');
-                hideAuthModal();
-            } else {
-                loginBtn.classList.remove('hidden');
-                userInfo.classList.add('hidden');
-                premiumLocked.classList.remove('hidden');
-                premiumUnlocked.classList.add('hidden');
-            }
+        if (user) {
+            loginBtn.classList.add('hidden');
+            userInfo.classList.remove('hidden');
+            document.getElementById('display-email').innerText = user.email;
+            premiumLocked.classList.add('hidden');
+            premiumUnlocked.classList.remove('hidden');
+            hideAuthModal();
+        } else {
+            loginBtn.classList.remove('hidden');
+            userInfo.classList.add('hidden');
+            premiumLocked.classList.remove('hidden');
+            premiumUnlocked.classList.add('hidden');
         }
+    }
 
-        // จัดการสมัครสมาชิก/เข้าสู่ระบบ
-        document.getElementById('auth-main-btn').addEventListener('click', async () => {
-            const email = document.getElementById('auth-email').value;
-            const password = document.getElementById('auth-password').value;
+    document.getElementById('auth-main-btn').addEventListener('click', async () => {
+        const email = document.getElementById('auth-email').value;
+        const password = document.getElementById('auth-password').value;
 
-            if (!email || !password) return alert('กรุณากรอกข้อมูลให้ครบ');
+        if (!email || !password) return alert('กรุณากรอกข้อมูลให้ครบ');
 
-            try {
-                if (isLoginMode) {
-                    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-                    if (error) throw error;
-                } else {
-                    const { data, error } = await supabase.auth.signUp({ email, password });
-                    if (error) throw error;
-                    alert('สมัครสมาชิกสำเร็จ! กรุณาเช็คอีเมลเพื่อยืนยัน (หากคุณเปิดฟีเจอร์ Confirm Email ไว้)');
-                }
-            } catch (err) {
-                alert('ข้อผิดพลาด: ' + err.message);
+        try {
+            if (isLoginMode) {
+                // เปลี่ยนเป็น supabaseClient
+                const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
+                if (error) throw error;
+            } else {
+                // เปลี่ยนเป็น supabaseClient
+                const { data, error } = await supabaseClient.auth.signUp({ email, password });
+                if (error) throw error;
+                alert('สมัครสมาชิกสำเร็จ! กรุณาเช็คอีเมลเพื่อยืนยัน');
             }
-        });
+        } catch (err) {
+            alert('ข้อผิดพลาด: ' + err.message);
+        }
+    });
 
-        // ฟังเหตุการณ์การเปลี่ยนสถานะ (Login/Logout)
-        supabase.auth.onAuthStateChange((event, session) => {
-            updateUI(session?.user || null);
-        });
+    // เปลี่ยนเป็น supabaseClient
+    supabaseClient.auth.onAuthStateChange((event, session) => {
+        updateUI(session?.user || null);
+    });
 
-        window.handleLogout = async () => {
-            await supabase.auth.signOut();
-        };
+    window.handleLogout = async () => {
+        await supabaseClient.auth.signOut();
+    };
 
-        // --- ส่วนที่ 3: ระบบเปลี่ยนหน้าและ UI ---
-        window.navigateTo = (pageId) => {
-            document.querySelectorAll('.page-section').forEach(section => section.classList.remove('active'));
-            document.getElementById(pageId + '-page').classList.add('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        };
+    // --- ระบบ UI อื่นๆ ---
+    window.navigateTo = (pageId) => {
+        document.querySelectorAll('.page-section').forEach(section => section.classList.remove('active'));
+        document.getElementById(pageId + '-page').classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
 
-        window.showAuthModal = () => document.getElementById('auth-modal').classList.remove('hidden');
-        window.hideAuthModal = () => document.getElementById('auth-modal').classList.add('hidden');
-        
-        window.toggleAuthMode = () => {
-            isLoginMode = !isLoginMode;
-            document.getElementById('auth-title').innerText = isLoginMode ? 'Welcome Back' : 'Join Insight';
-            document.getElementById('auth-toggle-text').innerText = isLoginMode ? 'ยังไม่มีบัญชีใช่ไหม?' : 'มีบัญชีอยู่แล้ว?';
-            document.getElementById('auth-toggle-btn').innerText = isLoginMode ? 'สมัครสมาชิก' : 'เข้าสู่ระบบ';
-        };
+    window.showAuthModal = () => document.getElementById('auth-modal').classList.remove('hidden');
+    window.hideAuthModal = () => document.getElementById('auth-modal').classList.add('hidden');
+    
+    window.toggleAuthMode = () => {
+        isLoginMode = !isLoginMode;
+        document.getElementById('auth-title').innerText = isLoginMode ? 'Welcome Back' : 'Join Insight';
+        document.getElementById('auth-toggle-text').innerText = isLoginMode ? 'ยังไม่มีบัญชีใช่ไหม?' : 'มีบัญชีอยู่แล้ว?';
+        document.getElementById('auth-toggle-btn').innerText = isLoginMode ? 'สมัครสมาชิก' : 'เข้าสู่ระบบ';
+    };
 
-        // เช็ค Session เริ่มต้น
-        (async () => {
-            const { data: { session } } = await supabase.auth.getSession();
-            updateUI(session?.user || null);
-        })();
-    </script>
+    (async () => {
+        // เปลี่ยนเป็น supabaseClient
+        const { data: { session } } = await supabaseClient.auth.getSession();
+        updateUI(session?.user || null);
+    })();
+</script>
+
 </body>
 </html>
