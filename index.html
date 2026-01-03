@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INSIGHT. | Knowledge Hub (Supabase Version)</title>
+    <title>INSIGHT. | Knowledge Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;300;400;500;600&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -11,12 +11,10 @@
         body { font-family: 'Kanit', sans-serif; scroll-behavior: smooth; }
         .font-serif { font-family: 'Playfair Display', serif; }
         .page-section { display: none; }
-        .page-section.active { display: block; animation: fadeIn 0.6s ease-out; }
+        .page-section.active { display: block; animation: fadeIn 0.4s ease-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .glass { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(15px); }
         .hero-gradient { background: linear-gradient(to right, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.3)); }
-        .bento-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .bento-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
     </style>
 </head>
 <body class="bg-[#f8fafc] text-slate-900">
@@ -28,15 +26,15 @@
             </button>
             <div class="hidden md:flex space-x-10 text-sm font-medium items-center">
                 <button onclick="navigateTo('home')" class="hover:text-indigo-600 transition">หน้าหลัก</button>
-                <button onclick="navigateTo('articles')" class="hover:text-indigo-600 transition">บทความทั้งหมด</button>
+                <button onclick="navigateTo('articles')" class="hover:text-indigo-600 transition">บทความ</button>
+                <button onclick="navigateTo('write')" class="hover:text-indigo-600 transition text-indigo-600 font-bold">เขียนบทความ ✍️</button>
                 <button onclick="navigateTo('premium')" class="bg-indigo-50 text-indigo-600 px-4 py-1.5 rounded-full font-bold border border-indigo-100">พรีเมียม ✨</button>
             </div>
             <div id="nav-auth-section">
-                <button onclick="showAuthModal()" id="btn-login-ui" class="bg-slate-900 text-white px-7 py-2.5 rounded-full text-sm font-semibold hover:bg-indigo-600 transition shadow-lg">เข้าสู่ระบบ</button>
+                <button onclick="showAuthModal()" id="btn-login-ui" class="bg-slate-900 text-white px-7 py-2.5 rounded-full text-sm font-semibold hover:bg-indigo-600 transition">เข้าสู่ระบบ</button>
                 <div id="user-info-ui" class="hidden flex items-center space-x-4">
                     <div class="text-right hidden sm:block">
                         <p id="display-email" class="text-xs font-bold text-slate-900"></p>
-                        <p class="text-[10px] text-indigo-500 uppercase tracking-widest font-bold">Standard Member</p>
                     </div>
                     <button onclick="handleLogout()" class="text-xs text-rose-500 font-bold border border-rose-100 px-4 py-2 rounded-full hover:bg-rose-50 transition">Log out</button>
                 </div>
@@ -45,51 +43,49 @@
     </nav>
 
     <section id="home-page" class="page-section active">
-        <div class="relative h-[600px] md:h-[700px] overflow-hidden">
+        <div class="relative h-[500px] overflow-hidden">
             <img src="https://images.unsplash.com/photo-1451187534959-4445a1e5c0d6?auto=format&fit=crop&q=80&w=1920" class="w-full h-full object-cover">
-            <div class="absolute inset-0 hero-gradient flex items-center">
-                <div class="container mx-auto px-6 text-white">
-                    <div class="max-w-3xl">
-                        <span class="inline-block px-4 py-1 mb-6 text-xs font-bold tracking-[0.2em] text-indigo-300 uppercase bg-indigo-500/10 border border-indigo-500/30 rounded-full">The Future of Knowledge</span>
-                        <h1 class="text-5xl md:text-8xl font-serif font-bold mb-6 leading-[1.1]">Deep <span class="text-indigo-400 italic">Insight</span><br>for the Bold.</h1>
-                        <p class="max-w-xl text-lg md:text-xl text-slate-300 mb-10 font-light">ก้าวข้ามทุกพาดหัวข่าว เจาะลึกถึงเบื้องหลังเทคโนโลยีที่คุณต้องรู้เพื่อวันพรุ่งนี้</p>
-                        <div class="flex flex-wrap gap-4">
-                            <button onclick="navigateTo('articles')" class="bg-indigo-600 text-white px-10 py-4 rounded-full font-bold hover:bg-indigo-700 transition-all scale-100 hover:scale-105">เริ่มอ่านบทความ</button>
-                        </div>
-                    </div>
+            <div class="absolute inset-0 hero-gradient flex items-center text-white">
+                <div class="container mx-auto px-6">
+                    <h1 class="text-6xl font-serif font-bold mb-4">Deep Insight for the Bold.</h1>
+                    <button onclick="navigateTo('articles')" class="bg-indigo-600 px-8 py-3 rounded-full font-bold">อ่านบทความ</button>
                 </div>
             </div>
-        </div>
-        </section>
-
-    <section id="articles-page" class="page-section py-20">
-        <div class="container mx-auto px-6">
-            <h2 class="text-5xl font-serif font-bold mb-16">Latest Stories</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-                <div class="group cursor-pointer">
-                    <div class="overflow-hidden rounded-[2rem] mb-6 h-72 shadow-lg">
-                        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
-                    </div>
-                    <h3 class="text-2xl font-bold group-hover:text-indigo-600 transition">วิธีป้องกันข้อมูลรั่วไหลในโลกยุค Post-Quantum</h3>
-                    <p class="text-slate-400 mt-4 text-sm line-clamp-2">เมื่อการเจาะข้อมูลทำได้เร็วขึ้น เราจะปกป้องความเป็นส่วนตัวได้อย่างไร...</p>
-                </div>
-                </div>
         </div>
     </section>
 
-    <section id="premium-page" class="page-section py-20 min-h-[70vh]">
+    <section id="articles-page" class="page-section py-20">
         <div class="container mx-auto px-6">
-            <div id="premium-unlocked" class="hidden">
-                <div class="bg-indigo-950 rounded-[3rem] p-12 text-white shadow-2xl">
-                    <h2 class="text-5xl font-serif font-bold mb-6">Insight Global Report: Q1 2026</h2>
-                    <p class="text-indigo-200 mb-10">ยินดีต้อนรับสมาชิกพรีเมียม! ข้อมูลนี้เป็นความลับเฉพาะคุณ</p>
-                    <button class="bg-white text-indigo-900 px-10 py-4 rounded-full font-bold">อ่านรายงาน (PDF)</button>
+            <h2 class="text-4xl font-serif font-bold mb-10">Latest Stories</h2>
+            <div id="posts-container" class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <p class="text-slate-400">กำลังโหลดบทความ...</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="write-page" class="page-section py-20">
+        <div class="container mx-auto px-6 max-w-2xl">
+            <div class="bg-white p-10 rounded-[2.5rem] shadow-xl border border-slate-100">
+                <h2 class="text-3xl font-serif font-bold mb-8 text-center">แบ่งปัน Insight ✍️</h2>
+                <div class="space-y-5">
+                    <input type="text" id="post-title" placeholder="หัวข้อบทความ" class="w-full px-6 py-4 rounded-2xl bg-slate-50 border border-slate-100 outline-none focus:ring-2 focus:ring-indigo-500">
+                    <textarea id="post-content" rows="6" placeholder="เนื้อหาของคุณ..." class="w-full px-6 py-4 rounded-2xl bg-slate-50 border border-slate-100 outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+                    <input type="text" id="post-image" placeholder="URL รูปภาพหน้าปก (ถ้ามี)" class="w-full px-6 py-4 rounded-2xl bg-slate-50 border border-slate-100 outline-none">
+                    <button onclick="handlePublish()" class="w-full bg-indigo-600 text-white py-4 rounded-2xl font-bold hover:bg-slate-900 transition shadow-lg">เผยแพร่บทความ</button>
                 </div>
             </div>
-            <div id="premium-locked" class="text-center py-20 max-w-2xl mx-auto">
-                <div class="text-6xl mb-10">🔒</div>
-                <h2 class="text-5xl font-serif font-bold mb-8 italic">"The Best Knowledge is Reserved."</h2>
-                <button onclick="showAuthModal()" class="bg-indigo-600 text-white px-12 py-5 rounded-full font-bold">สมัครสมาชิกเพื่อปลดล็อก</button>
+        </div>
+    </section>
+
+    <section id="premium-page" class="page-section py-20">
+        <div class="container mx-auto px-6 text-center">
+            <div id="premium-locked" class="py-10">
+                <h2 class="text-5xl font-serif font-bold mb-6 italic">🔒 Exclusive Content</h2>
+                <button onclick="showAuthModal()" class="bg-indigo-600 text-white px-10 py-4 rounded-full font-bold">สมัครสมาชิกเพื่อเข้าถึง</button>
+            </div>
+            <div id="premium-unlocked" class="hidden bg-slate-900 text-white p-16 rounded-[3rem]">
+                <h2 class="text-4xl font-serif font-bold mb-4">ยินดีต้อนรับสมาชิกพรีเมียม</h2>
+                <p>นี่คือรายงานฉบับพิเศษสำหรับคุณโดยเฉพาะ</p>
             </div>
         </div>
     </section>
@@ -99,8 +95,8 @@
             <button onclick="hideAuthModal()" class="absolute top-8 right-8 text-slate-400">✕</button>
             <h2 id="auth-title" class="text-4xl font-serif font-bold text-center mb-10">Welcome Back</h2>
             <div class="space-y-5">
-                <input type="email" id="auth-email" placeholder="Email" class="w-full px-6 py-4 rounded-2xl bg-slate-50 border border-slate-100 outline-none">
-                <input type="password" id="auth-password" placeholder="Password" class="w-full px-6 py-4 rounded-2xl bg-slate-50 border border-slate-100 outline-none">
+                <input type="email" id="auth-email" placeholder="Email" class="w-full px-6 py-4 rounded-2xl bg-slate-50 border border-slate-100 outline-none focus:ring-2 focus:ring-indigo-500">
+                <input type="password" id="auth-password" placeholder="Password" class="w-full px-6 py-4 rounded-2xl bg-slate-50 border border-slate-100 outline-none focus:ring-2 focus:ring-indigo-500">
                 <button id="auth-main-btn" class="w-full bg-slate-900 text-white py-4 rounded-2xl font-bold hover:bg-indigo-600 transition">ยืนยัน</button>
             </div>
             <p class="text-center mt-8 text-sm text-slate-500">
@@ -111,91 +107,115 @@
     </div>
 
     <script>
-    // --- ส่วนที่ 1: การตั้งค่า Supabase ---
-    const SUPABASE_URL = 'https://glmxblgtvtgjoegyscva.supabase.co';
-    const SUPABASE_KEY = 'sb_publishable_pZXXnhEAlkQQlkkm-QNOSQ_Uu0XEzLg';
-    
-    // แก้ไขตรงนี้: เปลี่ยนชื่อตัวแปรเป็น supabaseClient เพื่อไม่ให้ซ้ำกับ Library
-    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        // 1. Setup Supabase (กรุณาใช้ URL และ Key ของคุณ)
+        const SUPABASE_URL = 'https://glmxblgtvtgjoegyscva.supabase.co';
+        const SUPABASE_KEY = 'sb_publishable_pZXXnhEAlkQQlkkm-QNOSQ_Uu0XEzLg';
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-    // --- ส่วนที่ 2: ระบบจัดการ Authentication ---
-    let isLoginMode = true;
+        let isLoginMode = true;
 
-    async function updateUI(user) {
-        const loginBtn = document.getElementById('btn-login-ui');
-        const userInfo = document.getElementById('user-info-ui');
-        const premiumLocked = document.getElementById('premium-locked');
-        const premiumUnlocked = document.getElementById('premium-unlocked');
+        // 2. Auth Logic
+        async function updateUI(user) {
+            const loginBtn = document.getElementById('btn-login-ui');
+            const userInfo = document.getElementById('user-info-ui');
+            const premiumLocked = document.getElementById('premium-locked');
+            const premiumUnlocked = document.getElementById('premium-unlocked');
 
-        if (user) {
-            loginBtn.classList.add('hidden');
-            userInfo.classList.remove('hidden');
-            document.getElementById('display-email').innerText = user.email;
-            premiumLocked.classList.add('hidden');
-            premiumUnlocked.classList.remove('hidden');
-            hideAuthModal();
-        } else {
-            loginBtn.classList.remove('hidden');
-            userInfo.classList.add('hidden');
-            premiumLocked.classList.remove('hidden');
-            premiumUnlocked.classList.add('hidden');
-        }
-    }
-
-    document.getElementById('auth-main-btn').addEventListener('click', async () => {
-        const email = document.getElementById('auth-email').value;
-        const password = document.getElementById('auth-password').value;
-
-        if (!email || !password) return alert('กรุณากรอกข้อมูลให้ครบ');
-
-        try {
-            if (isLoginMode) {
-                // เปลี่ยนเป็น supabaseClient
-                const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
-                if (error) throw error;
+            if (user) {
+                loginBtn.classList.add('hidden');
+                userInfo.classList.remove('hidden');
+                document.getElementById('display-email').innerText = user.email;
+                premiumLocked.classList.add('hidden');
+                premiumUnlocked.classList.remove('hidden');
+                hideAuthModal();
             } else {
-                // เปลี่ยนเป็น supabaseClient
-                const { data, error } = await supabaseClient.auth.signUp({ email, password });
-                if (error) throw error;
-                alert('สมัครสมาชิกสำเร็จ! กรุณาเช็คอีเมลเพื่อยืนยัน');
+                loginBtn.classList.remove('hidden');
+                userInfo.classList.add('hidden');
+                premiumLocked.classList.remove('hidden');
+                premiumUnlocked.classList.add('hidden');
             }
-        } catch (err) {
-            alert('ข้อผิดพลาด: ' + err.message);
         }
-    });
 
-    // เปลี่ยนเป็น supabaseClient
-    supabaseClient.auth.onAuthStateChange((event, session) => {
-        updateUI(session?.user || null);
-    });
+        document.getElementById('auth-main-btn').addEventListener('click', async () => {
+            const email = document.getElementById('auth-email').value;
+            const password = document.getElementById('auth-password').value;
+            try {
+                if (isLoginMode) {
+                    const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
+                    if (error) throw error;
+                } else {
+                    const { error } = await supabaseClient.auth.signUp({ email, password });
+                    if (error) throw error;
+                    alert('สมัครสำเร็จ!');
+                }
+            } catch (err) { alert(err.message); }
+        });
 
-    window.handleLogout = async () => {
-        await supabaseClient.auth.signOut();
-    };
+        supabaseClient.auth.onAuthStateChange((event, session) => {
+            updateUI(session?.user || null);
+        });
 
-    // --- ระบบ UI อื่นๆ ---
-    window.navigateTo = (pageId) => {
-        document.querySelectorAll('.page-section').forEach(section => section.classList.remove('active'));
-        document.getElementById(pageId + '-page').classList.add('active');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
+        window.handleLogout = async () => { await supabaseClient.auth.signOut(); };
 
-    window.showAuthModal = () => document.getElementById('auth-modal').classList.remove('hidden');
-    window.hideAuthModal = () => document.getElementById('auth-modal').classList.add('hidden');
-    
-    window.toggleAuthMode = () => {
-        isLoginMode = !isLoginMode;
-        document.getElementById('auth-title').innerText = isLoginMode ? 'Welcome Back' : 'Join Insight';
-        document.getElementById('auth-toggle-text').innerText = isLoginMode ? 'ยังไม่มีบัญชีใช่ไหม?' : 'มีบัญชีอยู่แล้ว?';
-        document.getElementById('auth-toggle-btn').innerText = isLoginMode ? 'สมัครสมาชิก' : 'เข้าสู่ระบบ';
-    };
+        // 3. Post Logic (ดึงข้อมูล และ ส่งข้อมูล)
+        async function fetchPosts() {
+            const { data, error } = await supabaseClient.from('posts').select('*').order('created_at', { ascending: false });
+            if (error) return console.error(error);
+            
+            const container = document.getElementById('posts-container');
+            container.innerHTML = data.map(post => `
+                <div class="group bg-white rounded-[2rem] overflow-hidden shadow-sm border border-slate-100">
+                    <img src="${post.image_url || 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=800'}" class="w-full h-48 object-cover">
+                    <div class="p-8">
+                        <p class="text-xs text-indigo-600 font-bold mb-2 uppercase tracking-widest">${post.author_email.split('@')[0]}</p>
+                        <h3 class="text-xl font-bold mb-4">${post.title}</h3>
+                        <p class="text-slate-500 text-sm line-clamp-3">${post.content}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
 
-    (async () => {
-        // เปลี่ยนเป็น supabaseClient
-        const { data: { session } } = await supabaseClient.auth.getSession();
-        updateUI(session?.user || null);
-    })();
-</script>
+        async function handlePublish() {
+            const title = document.getElementById('post-title').value;
+            const content = document.getElementById('post-content').value;
+            const imageUrl = document.getElementById('post-image').value;
+            const { data: { session } } = await supabaseClient.auth.getSession();
 
+            if (!session) return alert('ต้องเข้าสู่ระบบก่อนครับ');
+            if (!title || !content) return alert('กรอกข้อมูลไม่ครบ');
+
+            const { error } = await supabaseClient.from('posts').insert([{ 
+                title, content, image_url: imageUrl, author_email: session.user.email 
+            }]);
+
+            if (error) alert(error.message);
+            else {
+                alert('เผยแพร่แล้ว!');
+                navigateTo('articles');
+                fetchPosts();
+            }
+        }
+
+        // 4. UI Navigation
+        window.navigateTo = (pageId) => {
+            document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+            document.getElementById(pageId + '-page').classList.add('active');
+            if(pageId === 'articles') fetchPosts();
+        };
+
+        window.showAuthModal = () => document.getElementById('auth-modal').classList.remove('hidden');
+        window.hideAuthModal = () => document.getElementById('auth-modal').classList.add('hidden');
+        window.toggleAuthMode = () => {
+            isLoginMode = !isLoginMode;
+            document.getElementById('auth-title').innerText = isLoginMode ? 'Welcome Back' : 'Join Insight';
+            document.getElementById('auth-toggle-btn').innerText = isLoginMode ? 'สมัครสมาชิก' : 'เข้าสู่ระบบ';
+        };
+
+        (async () => {
+            const { data: { session } } = await supabaseClient.auth.getSession();
+            updateUI(session?.user || null);
+            fetchPosts();
+        })();
+    </script>
 </body>
 </html>
