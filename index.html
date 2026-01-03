@@ -114,7 +114,7 @@
         // --- ส่วนที่ 1: การตั้งค่า Supabase (แก้ไขตรงนี้!) ---
         const SUPABASE_URL = 'https://glmxblgtvtgjoegyscva.supabase.co';
         const SUPABASE_KEY = 'sb_publishable_pZXXnhEAlkQQlkkm-QNOSQ_Uu0XEzLg';
-        const supabase = exports.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
         // --- ส่วนที่ 2: ระบบจัดการ Authentication ---
         let isLoginMode = true;
