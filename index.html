@@ -42,15 +42,78 @@
         </div>
     </nav>
 
-    <section id="home-page" class="page-section active">
-        <div class="relative h-[500px] overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1451187534959-4445a1e5c0d6?auto=format&fit=crop&q=80&w=1920" class="w-full h-full object-cover">
-            <div class="absolute inset-0 hero-gradient flex items-center text-white">
-                <div class="container mx-auto px-6">
-                    <h1 class="text-6xl font-serif font-bold mb-4">Deep Insight for the Bold.</h1>
-                    <button onclick="navigateTo('articles')" class="bg-indigo-600 px-8 py-3 rounded-full font-bold">อ่านบทความ</button>
+        <section id="home-page" class="page-section active">
+        <div class="relative h-[650px] flex items-center overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1451187534959-4445a1e5c0d6?auto=format&fit=crop&q=80&w=1920" class="absolute inset-0 w-full h-full object-cover scale-105 hover:scale-100 transition duration-[10s]">
+            <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/80 to-transparent"></div>
+            
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="max-w-3xl">
+                    <span class="inline-block px-4 py-1.5 mb-6 text-xs font-bold tracking-[0.3em] text-indigo-400 uppercase bg-indigo-500/10 border border-indigo-500/20 rounded-full">
+                        Next-Gen Knowledge Hub
+                    </span>
+                    <h1 class="text-6xl md:text-8xl font-serif font-bold text-white mb-8 leading-[1.1]">
+                        Deep <span class="text-indigo-500 italic">Insight</span><br>for the Bold.
+                    </h1>
+                    <p class="text-lg md:text-xl text-slate-300 mb-10 font-light leading-relaxed max-w-xl">
+                        เจาะลึกทุกประเด็นเทคโนโลยีและเศรษฐกิจโลกที่คุณต้องรู้ เพื่อก้าวทันความเปลี่ยนแปลงที่รวดเร็วที่สุดในประวัติศาสตร์
+                    </p>
+                    <div class="flex flex-wrap gap-5">
+                        <button onclick="navigateTo('articles')" class="bg-indigo-600 text-white px-10 py-4 rounded-full font-bold hover:bg-indigo-500 transition-all hover:shadow-[0_0_30px_rgba(79,70,229,0.4)] transform hover:-translate-y-1">
+                            เริ่มสำรวจเนื้อหา
+                        </button>
+                        <button onclick="navigateTo('write')" class="bg-white/5 backdrop-blur-md text-white border border-white/10 px-10 py-4 rounded-full font-bold hover:bg-white/10 transition">
+                            แบ่งปันความรู้ ✍️
+                        </button>
+                    </div>
                 </div>
             </div>
+        </div>
+
+        <div class="container mx-auto px-6 -mt-20 relative z-20 pb-24">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="md:col-span-2 bg-white/80 backdrop-blur-xl p-8 rounded-[2.5rem] shadow-2xl border border-white/50 flex flex-col justify-between group cursor-pointer overflow-hidden relative">
+                    <div class="relative z-10">
+                        <div class="flex items-center space-x-2 mb-6">
+                            <span class="w-2 h-2 bg-rose-500 rounded-full animate-ping"></span>
+                            <span class="text-xs font-bold text-rose-500 uppercase tracking-widest">Trending Now</span>
+                        </div>
+                        <h2 class="text-3xl font-bold mb-4 group-hover:text-indigo-600 transition">AI Economy 2026: ยุคแห่งการเปลี่ยนผ่านแรงงานครั้งใหญ่</h2>
+                        <p class="text-slate-500 font-light max-w-md">สรุปบทวิเคราะห์เศรษฐกิจรายไตรมาสที่สมาชิกเข้าอ่านมากที่สุดในช่วงสัปดาห์นี้...</p>
+                    </div>
+                    <div class="mt-8 flex items-center justify-between relative z-10">
+                        <div class="flex -space-x-3">
+                            <div class="w-10 h-10 rounded-full border-2 border-white bg-slate-200"></div>
+                            <div class="w-10 h-10 rounded-full border-2 border-white bg-indigo-100 flex items-center justify-center text-[10px] font-bold">+12</div>
+                        </div>
+                        <span class="text-indigo-600 font-bold text-sm">อ่านบทความพิเศษ →</span>
+                    </div>
+                    <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-indigo-500/5 rounded-full blur-3xl group-hover:bg-indigo-500/10 transition"></div>
+                </div>
+
+                <div class="bg-indigo-600 p-8 rounded-[2.5rem] shadow-2xl text-white flex flex-col justify-center items-center text-center relative overflow-hidden group">
+                    <div class="relative z-10">
+                        <p class="text-indigo-200 text-xs font-bold uppercase tracking-[0.2em] mb-4">Member Only</p>
+                        <h3 class="text-4xl font-serif font-bold mb-2 italic">99%</h3>
+                        <p class="text-sm font-light text-indigo-100">ของผู้อ่านพบว่าเนื้อหาพรีเมียมช่วยในการตัดสินใจทางธุรกิจได้ดีขึ้น</p>
+                        <button onclick="navigateTo('premium')" class="mt-8 bg-white text-indigo-600 px-6 py-2.5 rounded-full text-sm font-bold hover:bg-indigo-50 transition">ปลดล็อกสิทธิ์</button>
+                    </div>
+                    <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mx-auto px-6 py-20 border-t border-slate-100">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <h2 class="text-4xl font-serif font-bold">New Perspectives</h2>
+                    <p class="text-slate-500 mt-2 font-light">บทความล่าสุดจากชุมชนนักคิดของ INSIGHT.</p>
+                </div>
+                <button onclick="navigateTo('articles')" class="text-indigo-600 font-bold hover:underline">ดูทั้งหมด →</button>
+            </div>
+            
+            <div id="home-posts-preview" class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                </div>
         </div>
     </section>
 
