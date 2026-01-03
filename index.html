@@ -1,3 +1,4 @@
+สามารถเพิ่มอะไรได้อีกไหม
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -14,7 +15,7 @@
         .page-section.active { display: block; animation: fadeIn 0.4s ease-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .glass { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(15px); }
-        .line-clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+        .hero-gradient { background: linear-gradient(to right, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.3)); }
     </style>
 </head>
 <body class="bg-[#f8fafc] text-slate-900">
@@ -28,52 +29,101 @@
                 <button onclick="navigateTo('home')" class="hover:text-indigo-600 transition">หน้าหลัก</button>
                 <button onclick="navigateTo('articles')" class="hover:text-indigo-600 transition">บทความ</button>
                 <button onclick="navigateTo('write')" class="hover:text-indigo-600 transition text-indigo-600 font-bold">เขียนบทความ ✍️</button>
+                <button onclick="navigateTo('premium')" class="bg-indigo-50 text-indigo-600 px-4 py-1.5 rounded-full font-bold border border-indigo-100">พรีเมียม ✨</button>
             </div>
-            <div id="nav-auth-section" class="flex items-center space-x-4">
+            <div id="nav-auth-section">
                 <button onclick="showAuthModal()" id="btn-login-ui" class="bg-slate-900 text-white px-7 py-2.5 rounded-full text-sm font-semibold hover:bg-indigo-600 transition">เข้าสู่ระบบ</button>
                 <div id="user-info-ui" class="hidden flex items-center space-x-4">
-                    <p id="display-email" class="text-xs font-bold text-slate-500 hidden sm:block"></p>
+                    <div class="text-right hidden sm:block">
+                        <p id="display-email" class="text-xs font-bold text-slate-900"></p>
+                    </div>
                     <button onclick="handleLogout()" class="text-xs text-rose-500 font-bold border border-rose-100 px-4 py-2 rounded-full hover:bg-rose-50 transition">Log out</button>
                 </div>
             </div>
         </div>
     </nav>
 
-    <section id="home-page" class="page-section active">
-        <div class="relative h-[500px] flex items-center overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1451187534959-4445a1e5c0d6?auto=format&fit=crop&q=80&w=1920" class="absolute inset-0 w-full h-full object-cover">
-            <div class="absolute inset-0 bg-slate-950/70"></div>
-            <div class="container mx-auto px-6 relative z-10 text-white">
-                <h1 class="text-5xl md:text-7xl font-serif font-bold mb-6 text-white">Deep Insight for the Bold.</h1>
-                <button onclick="navigateTo('articles')" class="bg-indigo-600 px-8 py-3 rounded-full font-bold hover:bg-indigo-500 transition">สำรวจบทความ</button>
+        <section id="home-page" class="page-section active">
+        <div class="relative h-[650px] flex items-center overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1451187534959-4445a1e5c0d6?auto=format&fit=crop&q=80&w=1920" class="absolute inset-0 w-full h-full object-cover scale-105 hover:scale-100 transition duration-[10s]">
+            <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/80 to-transparent"></div>
+            
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="max-w-3xl">
+                    <span class="inline-block px-4 py-1.5 mb-6 text-xs font-bold tracking-[0.3em] text-indigo-400 uppercase bg-indigo-500/10 border border-indigo-500/20 rounded-full">
+                        Next-Gen Knowledge Hub
+                    </span>
+                    <h1 class="text-6xl md:text-8xl font-serif font-bold text-white mb-8 leading-[1.1]">
+                        Deep <span class="text-indigo-500 italic">Insight</span><br>for the Bold.
+                    </h1>
+                    <p class="text-lg md:text-xl text-slate-300 mb-10 font-light leading-relaxed max-w-xl">
+                        เจาะลึกทุกประเด็นเทคโนโลยีและเศรษฐกิจโลกที่คุณต้องรู้ เพื่อก้าวทันความเปลี่ยนแปลงที่รวดเร็วที่สุดในประวัติศาสตร์
+                    </p>
+                    <div class="flex flex-wrap gap-5">
+                        <button onclick="navigateTo('articles')" class="bg-indigo-600 text-white px-10 py-4 rounded-full font-bold hover:bg-indigo-500 transition-all hover:shadow-[0_0_30px_rgba(79,70,229,0.4)] transform hover:-translate-y-1">
+                            เริ่มสำรวจเนื้อหา
+                        </button>
+                        <button onclick="navigateTo('write')" class="bg-white/5 backdrop-blur-md text-white border border-white/10 px-10 py-4 rounded-full font-bold hover:bg-white/10 transition">
+                            แบ่งปันความรู้ ✍️
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="container mx-auto px-6 py-20">
-            <h2 class="text-3xl font-serif font-bold mb-10">บทความแนะนำ</h2>
-            <div id="home-posts-container" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+        <div class="container mx-auto px-6 -mt-20 relative z-20 pb-24">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="md:col-span-2 bg-white/80 backdrop-blur-xl p-8 rounded-[2.5rem] shadow-2xl border border-white/50 flex flex-col justify-between group cursor-pointer overflow-hidden relative">
+                    <div class="relative z-10">
+                        <div class="flex items-center space-x-2 mb-6">
+                            <span class="w-2 h-2 bg-rose-500 rounded-full animate-ping"></span>
+                            <span class="text-xs font-bold text-rose-500 uppercase tracking-widest">Trending Now</span>
+                        </div>
+                        <h2 class="text-3xl font-bold mb-4 group-hover:text-indigo-600 transition">AI Economy 2026: ยุคแห่งการเปลี่ยนผ่านแรงงานครั้งใหญ่</h2>
+                        <p class="text-slate-500 font-light max-w-md">สรุปบทวิเคราะห์เศรษฐกิจรายไตรมาสที่สมาชิกเข้าอ่านมากที่สุดในช่วงสัปดาห์นี้...</p>
+                    </div>
+                    <div class="mt-8 flex items-center justify-between relative z-10">
+                        <div class="flex -space-x-3">
+                            <div class="w-10 h-10 rounded-full border-2 border-white bg-slate-200"></div>
+                            <div class="w-10 h-10 rounded-full border-2 border-white bg-indigo-100 flex items-center justify-center text-[10px] font-bold">+12</div>
+                        </div>
+                        <span class="text-indigo-600 font-bold text-sm">อ่านบทความพิเศษ →</span>
+                    </div>
+                    <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-indigo-500/5 rounded-full blur-3xl group-hover:bg-indigo-500/10 transition"></div>
+                </div>
+
+                <div class="bg-indigo-600 p-8 rounded-[2.5rem] shadow-2xl text-white flex flex-col justify-center items-center text-center relative overflow-hidden group">
+                    <div class="relative z-10">
+                        <p class="text-indigo-200 text-xs font-bold uppercase tracking-[0.2em] mb-4">Member Only</p>
+                        <h3 class="text-4xl font-serif font-bold mb-2 italic">99%</h3>
+                        <p class="text-sm font-light text-indigo-100">ของผู้อ่านพบว่าเนื้อหาพรีเมียมช่วยในการตัดสินใจทางธุรกิจได้ดีขึ้น</p>
+                        <button onclick="navigateTo('premium')" class="mt-8 bg-white text-indigo-600 px-6 py-2.5 rounded-full text-sm font-bold hover:bg-indigo-50 transition">ปลดล็อกสิทธิ์</button>
+                    </div>
+                    <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mx-auto px-6 py-20 border-t border-slate-100">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <h2 class="text-4xl font-serif font-bold">New Perspectives</h2>
+                    <p class="text-slate-500 mt-2 font-light">บทความล่าสุดจากชุมชนนักคิดของ INSIGHT.</p>
+                </div>
+                <button onclick="navigateTo('articles')" class="text-indigo-600 font-bold hover:underline">ดูทั้งหมด →</button>
+            </div>
+            
+            <div id="home-posts-preview" class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 </div>
         </div>
     </section>
 
     <section id="articles-page" class="page-section py-20">
         <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center mb-12 gap-4">
-                <h2 class="text-4xl font-serif font-bold">Latest Stories</h2>
-                <input type="text" id="search-input" oninput="handleSearch()" placeholder="ค้นหาบทความ..." class="px-6 py-3 rounded-full bg-white border border-slate-200 outline-none focus:ring-2 focus:ring-indigo-500 w-full md:w-80">
-            </div>
+            <h2 class="text-4xl font-serif font-bold mb-10">Latest Stories</h2>
             <div id="posts-container" class="grid grid-cols-1 md:grid-cols-3 gap-12">
-                <div class="animate-pulse bg-slate-200 h-80 rounded-[2rem]"></div>
-                <div class="animate-pulse bg-slate-200 h-80 rounded-[2rem]"></div>
-                <div class="animate-pulse bg-slate-200 h-80 rounded-[2rem]"></div>
+                <p class="text-slate-400">กำลังโหลดบทความ...</p>
             </div>
-        </div>
-    </section>
-
-    <section id="post-detail-page" class="page-section py-20 bg-white">
-        <div class="container mx-auto px-6 max-w-3xl">
-            <button onclick="navigateTo('articles')" class="text-indigo-600 font-bold mb-8 flex items-center gap-2">← กลับไปหน้ารวม</button>
-            <div id="post-detail-content">
-                </div>
         </div>
     </section>
 
@@ -83,10 +133,23 @@
                 <h2 class="text-3xl font-serif font-bold mb-8 text-center">แบ่งปัน Insight ✍️</h2>
                 <div class="space-y-5">
                     <input type="text" id="post-title" placeholder="หัวข้อบทความ" class="w-full px-6 py-4 rounded-2xl bg-slate-50 border border-slate-100 outline-none focus:ring-2 focus:ring-indigo-500">
-                    <textarea id="post-content" rows="8" placeholder="เนื้อหาของคุณ... (รองรับการเว้นวรรคปกติ)" class="w-full px-6 py-4 rounded-2xl bg-slate-50 border border-slate-100 outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
-                    <input type="text" id="post-image" placeholder="URL รูปภาพหน้าปก (Unsplash link)" class="w-full px-6 py-4 rounded-2xl bg-slate-50 border border-slate-100 outline-none">
+                    <textarea id="post-content" rows="6" placeholder="เนื้อหาของคุณ..." class="w-full px-6 py-4 rounded-2xl bg-slate-50 border border-slate-100 outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+                    <input type="text" id="post-image" placeholder="URL รูปภาพหน้าปก (ถ้ามี)" class="w-full px-6 py-4 rounded-2xl bg-slate-50 border border-slate-100 outline-none">
                     <button onclick="handlePublish()" class="w-full bg-indigo-600 text-white py-4 rounded-2xl font-bold hover:bg-slate-900 transition shadow-lg">เผยแพร่บทความ</button>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="premium-page" class="page-section py-20">
+        <div class="container mx-auto px-6 text-center">
+            <div id="premium-locked" class="py-10">
+                <h2 class="text-5xl font-serif font-bold mb-6 italic">🔒 Exclusive Content</h2>
+                <button onclick="showAuthModal()" class="bg-indigo-600 text-white px-10 py-4 rounded-full font-bold">สมัครสมาชิกเพื่อเข้าถึง</button>
+            </div>
+            <div id="premium-unlocked" class="hidden bg-slate-900 text-white p-16 rounded-[3rem]">
+                <h2 class="text-4xl font-serif font-bold mb-4">ยินดีต้อนรับสมาชิกพรีเมียม</h2>
+                <p>นี่คือรายงานฉบับพิเศษสำหรับคุณโดยเฉพาะ</p>
             </div>
         </div>
     </section>
@@ -96,8 +159,8 @@
             <button onclick="hideAuthModal()" class="absolute top-8 right-8 text-slate-400">✕</button>
             <h2 id="auth-title" class="text-4xl font-serif font-bold text-center mb-10">Welcome Back</h2>
             <div class="space-y-5">
-                <input type="email" id="auth-email" placeholder="Email" class="w-full px-6 py-4 rounded-2xl bg-slate-50 border border-slate-100 outline-none">
-                <input type="password" id="auth-password" placeholder="Password" class="w-full px-6 py-4 rounded-2xl bg-slate-50 border border-slate-100 outline-none">
+                <input type="email" id="auth-email" placeholder="Email" class="w-full px-6 py-4 rounded-2xl bg-slate-50 border border-slate-100 outline-none focus:ring-2 focus:ring-indigo-500">
+                <input type="password" id="auth-password" placeholder="Password" class="w-full px-6 py-4 rounded-2xl bg-slate-50 border border-slate-100 outline-none focus:ring-2 focus:ring-indigo-500">
                 <button id="auth-main-btn" class="w-full bg-slate-900 text-white py-4 rounded-2xl font-bold hover:bg-indigo-600 transition">ยืนยัน</button>
             </div>
             <p class="text-center mt-8 text-sm text-slate-500">
@@ -107,41 +170,33 @@
         </div>
     </div>
 
-    <footer class="bg-white border-t border-slate-100 py-12 mt-20">
-        <div class="container mx-auto px-6 text-center">
-            <p class="text-slate-400 text-sm">© 2026 INSIGHT. All rights reserved.</p>
-        </div>
-    </footer>
-
     <script>
-        // 1. Supabase Configuration
+        // 1. Setup Supabase (กรุณาใช้ URL และ Key ของคุณ)
         const SUPABASE_URL = 'https://glmxblgtvtgjoegyscva.supabase.co';
         const SUPABASE_KEY = 'sb_publishable_pZXXnhEAlkQQlkkm-QNOSQ_Uu0XEzLg';
         const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
         let isLoginMode = true;
-        let allPosts = [];
 
-        // 2. Navigation Logic
-        window.navigateTo = (pageId) => {
-            document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
-            document.getElementById(pageId + '-page').classList.add('active');
-            window.scrollTo(0,0);
-            if(pageId === 'articles' || pageId === 'home') fetchPosts();
-        };
-
-        // 3. Auth Logic
+        // 2. Auth Logic
         async function updateUI(user) {
             const loginBtn = document.getElementById('btn-login-ui');
             const userInfo = document.getElementById('user-info-ui');
+            const premiumLocked = document.getElementById('premium-locked');
+            const premiumUnlocked = document.getElementById('premium-unlocked');
+
             if (user) {
                 loginBtn.classList.add('hidden');
                 userInfo.classList.remove('hidden');
                 document.getElementById('display-email').innerText = user.email;
+                premiumLocked.classList.add('hidden');
+                premiumUnlocked.classList.remove('hidden');
                 hideAuthModal();
             } else {
                 loginBtn.classList.remove('hidden');
                 userInfo.classList.add('hidden');
+                premiumLocked.classList.remove('hidden');
+                premiumUnlocked.classList.add('hidden');
             }
         }
 
@@ -155,7 +210,7 @@
                 } else {
                     const { error } = await supabaseClient.auth.signUp({ email, password });
                     if (error) throw error;
-                    alert('สมัครสมาชิกสำเร็จ! โปรดตรวจสอบอีเมลของคุณ');
+                    alert('สมัครสำเร็จ!');
                 }
             } catch (err) { alert(err.message); }
         });
@@ -165,6 +220,53 @@
         });
 
         window.handleLogout = async () => { await supabaseClient.auth.signOut(); };
+
+        // 3. Post Logic (ดึงข้อมูล และ ส่งข้อมูล)
+        async function fetchPosts() {
+            const { data, error } = await supabaseClient.from('posts').select('*').order('created_at', { ascending: false });
+            if (error) return console.error(error);
+            
+            const container = document.getElementById('posts-container');
+            container.innerHTML = data.map(post => `
+                <div class="group bg-white rounded-[2rem] overflow-hidden shadow-sm border border-slate-100">
+                    <img src="${post.image_url || 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=800'}" class="w-full h-48 object-cover">
+                    <div class="p-8">
+                        <p class="text-xs text-indigo-600 font-bold mb-2 uppercase tracking-widest">${post.author_email.split('@')[0]}</p>
+                        <h3 class="text-xl font-bold mb-4">${post.title}</h3>
+                        <p class="text-slate-500 text-sm line-clamp-3">${post.content}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        async function handlePublish() {
+            const title = document.getElementById('post-title').value;
+            const content = document.getElementById('post-content').value;
+            const imageUrl = document.getElementById('post-image').value;
+            const { data: { session } } = await supabaseClient.auth.getSession();
+
+            if (!session) return alert('ต้องเข้าสู่ระบบก่อนครับ');
+            if (!title || !content) return alert('กรอกข้อมูลไม่ครบ');
+
+            const { error } = await supabaseClient.from('posts').insert([{ 
+                title, content, image_url: imageUrl, author_email: session.user.email 
+            }]);
+
+            if (error) alert(error.message);
+            else {
+                alert('เผยแพร่แล้ว!');
+                navigateTo('articles');
+                fetchPosts();
+            }
+        }
+
+        // 4. UI Navigation
+        window.navigateTo = (pageId) => {
+            document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+            document.getElementById(pageId + '-page').classList.add('active');
+            if(pageId === 'articles') fetchPosts();
+        };
+
         window.showAuthModal = () => document.getElementById('auth-modal').classList.remove('hidden');
         window.hideAuthModal = () => document.getElementById('auth-modal').classList.add('hidden');
         window.toggleAuthMode = () => {
@@ -173,86 +275,6 @@
             document.getElementById('auth-toggle-btn').innerText = isLoginMode ? 'สมัครสมาชิก' : 'เข้าสู่ระบบ';
         };
 
-        // 4. Content Logic
-        async function fetchPosts() {
-            const { data, error } = await supabaseClient.from('posts').select('*').order('created_at', { ascending: false });
-            if (error) return console.error(error);
-            allPosts = data;
-            renderPosts(data);
-        }
-
-        function renderPosts(posts) {
-            const container = document.getElementById('posts-container');
-            const homeContainer = document.getElementById('home-posts-container');
-            
-            const html = posts.map(post => `
-                <div onclick="viewPostDetail('${post.id}')" class="group cursor-pointer bg-white rounded-[2rem] overflow-hidden shadow-sm hover:shadow-xl transition-all border border-slate-100">
-                    <img src="${post.image_url || 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=800'}" class="w-full h-56 object-cover group-hover:scale-105 transition duration-500">
-                    <div class="p-8">
-                        <p class="text-xs text-indigo-600 font-bold mb-3 uppercase tracking-widest">${post.author_email.split('@')[0]}</p>
-                        <h3 class="text-xl font-bold mb-4 line-clamp-2 group-hover:text-indigo-600">${post.title}</h3>
-                        <p class="text-slate-500 text-sm line-clamp-3 font-light">${post.content}</p>
-                    </div>
-                </div>
-            `).join('');
-
-            if(container) container.innerHTML = html || '<p>ไม่พบบทความ</p>';
-            if(homeContainer) homeContainer.innerHTML = html;
-        }
-
-        function handleSearch() {
-            const query = document.getElementById('search-input').value.toLowerCase();
-            const filtered = allPosts.filter(p => p.title.toLowerCase().includes(query) || p.content.toLowerCase().includes(query));
-            renderPosts(filtered);
-        }
-
-        window.viewPostDetail = (postId) => {
-            const post = allPosts.find(p => p.id == postId);
-            if(!post) return;
-            
-            const contentHtml = `
-                <img src="${post.image_url}" class="w-full h-[400px] object-cover rounded-[3rem] mb-12 shadow-lg">
-                <h1 class="text-4xl md:text-5xl font-serif font-bold mb-6 leading-tight">${post.title}</h1>
-                <div class="flex items-center gap-4 mb-10 pb-10 border-b border-slate-100">
-                    <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center font-bold text-indigo-600">
-                        ${post.author_email[0].toUpperCase()}
-                    </div>
-                    <div>
-                        <p class="font-bold text-slate-900">${post.author_email}</p>
-                        <p class="text-sm text-slate-400">${new Date(post.created_at).toLocaleDateString('th-TH', { dateStyle: 'long' })}</p>
-                    </div>
-                </div>
-                <div class="prose prose-indigo max-w-none text-slate-700 leading-relaxed text-lg whitespace-pre-line">
-                    ${post.content}
-                </div>
-            `;
-            document.getElementById('post-detail-content').innerHTML = contentHtml;
-            navigateTo('post-detail');
-        };
-
-        async function handlePublish() {
-            const title = document.getElementById('post-title').value;
-            const content = document.getElementById('post-content').value;
-            const imageUrl = document.getElementById('post-image').value || 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=800';
-            const { data: { session } } = await supabaseClient.auth.getSession();
-
-            if (!session) return showAuthModal();
-            if (!title || !content) return alert('กรุณากรอกหัวข้อและเนื้อหา');
-
-            const { error } = await supabaseClient.from('posts').insert([{ 
-                title, content, image_url: imageUrl, author_email: session.user.email 
-            }]);
-
-            if (error) alert(error.message);
-            else {
-                alert('เผยแพร่สำเร็จ!');
-                document.getElementById('post-title').value = '';
-                document.getElementById('post-content').value = '';
-                navigateTo('articles');
-            }
-        }
-
-        // Initialize
         (async () => {
             const { data: { session } } = await supabaseClient.auth.getSession();
             updateUI(session?.user || null);
